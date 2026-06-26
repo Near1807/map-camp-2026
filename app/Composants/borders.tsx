@@ -2,7 +2,6 @@
 
 import { GROUP_LEVEL } from "../config";
 import { useCall } from "../context/Callcontext";
-import { useSound } from "../hooks/useSound";
 
 export function PokedexHeader() {
   const { inCall, setInCall, playRing, stopRing } = useCall();
@@ -19,40 +18,46 @@ export function PokedexHeader() {
       paddingBottom: '20px',
       gap: '10px',
     }}>
-      {/* Bouton rond bleu */}
-        <div style={{
-            width: 28,
-            height: 28,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle at 35% 35%, #60aaff, #0055cc)',
-            border: '3px solid #003399',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#CAD3E3',
-            fontSize: '20px',
-            fontWeight: 'bold',
-            paddingTop:'2px',
-            flexShrink: 0,
-            }}>
-            {GROUP_LEVEL}
-        </div>
-        {[
-            { color: '#ff4444', onClick: undefined },
-            { color: '#ffcc00', onClick: () => { setInCall(!inCall); playRing(); } },
-            { color: '#44cc44', onClick: undefined },
-        ].map(({ color, onClick }, i) => (
-            <div key={i} onClick={onClick} style={{
-            width: 12, height: 12, borderRadius: '50%',
-            backgroundColor: color,
-            cursor: onClick ? 'pointer' : 'default',
-            }} />
-        ))}
+      <div style={{
+          width: 28,
+          height: 28,
+          borderRadius: '50%',
+          background: 'radial-gradient(circle at 35% 35%, #60aaff, #0055cc)',
+          border: '3px solid #003399',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#CAD3E3',
+          fontSize: '20px',
+          fontWeight: 'bold',
+          paddingTop:'2px',
+          flexShrink: 0,
+        }}>
+        {GROUP_LEVEL}
+      </div>
+      {[
+        { color: '#ff4444', onClick: undefined },
+        { color: '#ffcc00', onClick: () => {
+          if (inCall) {
+            setInCall(false);
+            stopRing();
+          } else {
+            setInCall(true);
+            playRing();
+          }
+        }},
+        { color: '#44cc44', onClick: undefined },
+      ].map(({ color, onClick }, i) => (
+        <div key={i} onClick={onClick} style={{
+          width: 12, height: 12, borderRadius: '50%',
+          backgroundColor: color,
+          cursor: onClick ? 'pointer' : 'default',
+        }} />
+      ))}
     </header>
   );
 }
 
-// Footer.jsx
 export function PokedexFooter() {
   return (
     <footer style={{
