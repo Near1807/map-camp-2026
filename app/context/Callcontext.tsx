@@ -13,7 +13,7 @@ export function CallProvider({ children }: { children: React.ReactNode }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const playRing = () => {
-    audioRef.current = new Audio("/china-ringing-phone.mp3");
+    audioRef.current = new Audio("/sons/call.mp3");
     audioRef.current.loop = true;
     audioRef.current.play();
   };
