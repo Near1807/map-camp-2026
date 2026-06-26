@@ -33,6 +33,7 @@ export default function IlePage() {
 
     console.log("LEVEL:", process.env.NEXT_PUBLIC_Group_Level);
     console.log("TYPE:", typeof process.env.NEXT_PUBLIC_Group_Level);
+    
 
   return (
     <div className="relative w-full h-full bg-[#07111f] flex gap-3 p-[8px] items-stretch">

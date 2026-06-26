@@ -5,9 +5,10 @@ import { useCall } from "../context/Callcontext";
 
 export function LevelWarning({ ileId }: { ileId: string }) {
   const { bypassedIles, bypassWarning } = useCall();
+    console.log("bypassedIles:", bypassedIles);
+    console.log("includes:", bypassedIles.includes(ileId));
 
   if (bypassedIles.includes(ileId)) return null;
-
   return (
     <div className="absolute inset-0 z-50 bg-black/80 flex items-center justify-center">
       <div className="border-2 border-red-500 bg-[#1a0000] rounded-2xl p-8 flex flex-col items-center gap-4 max-w-sm w-full mx-4">
