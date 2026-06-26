@@ -1,7 +1,12 @@
 "use client";
 import Link from "next/link";
+import { useState } from "react";
 
 export function LevelWarning() {
+  const [bypassed, setBypassed] = useState(false);
+
+  if (bypassed) return null;
+
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-[5000] bg-black/80 flex items-center justify-center">
       <div className="border-2 border-red-500 bg-[#1a0000] rounded-2xl p-8 flex flex-col items-center gap-4 max-w-sm w-full mx-4">
@@ -33,6 +38,13 @@ export function LevelWarning() {
         <Link href="/" className="w-full text-center border border-red-700 hover:border-red-400 hover:text-red-400 text-red-700 font-mono text-[10px] uppercase tracking-widest px-4 py-2 rounded-lg transition-colors">
           ← Retourner en zone sûre
         </Link>
+
+        <button
+          onClick={() => setBypassed(true)}
+          className="text-[9px] text-red-900 hover:text-red-700 font-mono uppercase tracking-widest transition-colors"
+        >
+          Ignorer l'avertissement →
+        </button>
 
       </div>
     </div>
