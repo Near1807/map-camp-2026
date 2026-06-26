@@ -34,7 +34,7 @@ export function PokedexHeader() {
             paddingTop:'2px',
             flexShrink: 0,
             }}>
-            {process.env.NEXT_PUBLIC_Group_Level}
+            {GROUP_LEVEL}
         </div>
         {[
             { color: '#ff4444', onClick: undefined },
