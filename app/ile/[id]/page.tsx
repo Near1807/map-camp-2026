@@ -36,7 +36,7 @@ export default function IlePage() {
 
   return (
     <div className="relative w-full h-full bg-[#07111f] flex gap-3 p-[8px] items-stretch">
-      {Number(process.env.NEXT_PUBLIC_Group_Level) < ile.levelMin && <LevelWarning />}
+      {Number(process.env.NEXT_PUBLIC_Group_Level) < ile.levelMin && <LevelWarning ileId={ile.id} />}
 
       {inCall ? (
         <div className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] grow overflow-hidden min-w-0 flex flex-col items-center justify-between p-4 relative">

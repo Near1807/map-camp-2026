@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useCall } from "../context/Callcontext";
 
-export function LevelWarning() {
-  const [bypassed, setBypassed] = useState(false);
+export function LevelWarning({ ileId }: { ileId: string }) {
+  const { bypassedIles, bypassWarning } = useCall();
 
-  if (bypassed) return null;
+  if (bypassedIles.includes(ileId)) return null;
 
   return (
     <div className="absolute inset-0 z-50 bg-black/80 flex items-center justify-center">
@@ -40,7 +41,7 @@ export function LevelWarning() {
         </Link>
 
         <button
-          onClick={() => setBypassed(true)}
+          onClick={() => bypassWarning(ileId)}
           className="text-[9px] text-red-900 hover:text-red-700 font-mono uppercase tracking-widest transition-colors"
         >
           Ignorer l'avertissement →

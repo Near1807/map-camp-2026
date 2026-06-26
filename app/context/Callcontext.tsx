@@ -6,14 +6,17 @@ const CallContext = createContext<{
   setInCall: (v: boolean) => void;
   playRing: () => void;
   stopRing: () => void;
-}>({ inCall: false, setInCall: () => {}, playRing: () => {}, stopRing: () => {} });
+  bypassedIles: string[];
+  bypassWarning: (id: string) => void;
+}>({ inCall: false, setInCall: () => {}, playRing: () => {}, stopRing: () => {}, bypassedIles: [], bypassWarning: () => {} });
 
 export function CallProvider({ children }: { children: React.ReactNode }) {
   const [inCall, setInCall] = useState(false);
+  const [bypassedIles, setBypassedIles] = useState<string[]>([]);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const playRing = () => {
-    audioRef.current = new Audio("/sons/call.mp3");
+    audioRef.current = new Audio("/china-ringing-phone.mp3");
     audioRef.current.loop = true;
     audioRef.current.play();
   };
@@ -25,8 +28,12 @@ export function CallProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const bypassWarning = (id: string) => {
+    setBypassedIles(prev => [...prev, id]);
+  };
+
   return (
-    <CallContext.Provider value={{ inCall, setInCall, playRing, stopRing }}>
+    <CallContext.Provider value={{ inCall, setInCall, playRing, stopRing, bypassedIles, bypassWarning }}>
       {children}
     </CallContext.Provider>
   );
