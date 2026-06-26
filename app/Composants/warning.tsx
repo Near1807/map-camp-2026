@@ -1,14 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
-import { useCall } from "../context/Callcontext";
 
-export function LevelWarning({ ileId }: { ileId: string }) {
-  const { bypassedIles, bypassWarning } = useCall();
-    console.log("bypassedIles:", bypassedIles);
-    console.log("includes:", bypassedIles.includes(ileId));
-
-  if (bypassedIles.includes(ileId)) return null;
+export function LevelWarning() {
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 z-[5000] bg-black/80 flex items-center justify-center">
       <div className="border-2 border-red-500 bg-[#1a0000] rounded-2xl p-8 flex flex-col items-center gap-4 max-w-sm w-full mx-4">
@@ -40,13 +33,6 @@ export function LevelWarning({ ileId }: { ileId: string }) {
         <Link href="/" className="w-full text-center border border-red-700 hover:border-red-400 hover:text-red-400 text-red-700 font-mono text-[10px] uppercase tracking-widest px-4 py-2 rounded-lg transition-colors">
           ← Retourner en zone sûre
         </Link>
-
-        <button
-          onClick={() => bypassWarning(ileId)}
-          className="text-[9px] text-red-900 hover:text-red-700 font-mono uppercase tracking-widest transition-colors"
-        >
-          Ignorer l'avertissement →
-        </button>
 
       </div>
     </div>
