@@ -10,14 +10,23 @@ import { SoundBar } from "@/app/Composants/soundbar";
 import { GROUP_LEVEL } from "@/app/config";
 
 const STYLE = {
-  labelSize: "text-[9px]",
-  valueSize: "text-[10px]",
+  // Taille des labels/titres de section (ex: "Île", "Météo", "Infos")
+  labelSize: "text-[11px]",
+  // Taille des valeurs dans les lignes d'info (ex: "Volcanique", "28°C")
+  valueSize: "text-[13px]",
+  // Taille du titre principal de l'île
   titleSize: "text-2xl",
-  subtitleSize: "text-[11px]",
+  // Taille du sous-titre (ex: "Île n°1 — Alola")
+  subtitleSize: "text-[13px]",
+  // Taille du corps de texte (description)
   bodySize: "text-[11px]",
+  // Police — font-mono pour le look terminal, font-sans pour plus lisible
   font: "font-mono",
+  // Couleur des labels/titres de section (bleu foncé discret)
   labelColor: "text-[#3a6aaa]",
+  // Couleur des valeurs principales (bleu clair lumineux)
   valueColor: "text-[#7dc8ff]",
+  // Couleur du texte secondaire (description, pokémon, etc.)
   mutedColor: "text-[#5a8ac0]",
 };
 
@@ -144,25 +153,28 @@ export default function IlePage() {
                 <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Infos</p>
                 <div className="flex flex-col gap-1.5">
                   <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.labelColor} ${STYLE.font}`}>Terrain</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Terrain</span>
                     <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font}`}>{ile.terrain}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.labelColor} ${STYLE.font}`}>Météo</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Météo</span>
                     <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font}`}>{ile.meteo}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.labelColor} ${STYLE.font}`}>Difficulté</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Difficulté</span>
                     <span className={`${STYLE.valueSize} ${STYLE.font} ${ile.difficulteColor}`}>{ile.difficulte}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.labelColor} ${STYLE.font}`}>Niveau Recommandé</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Niveau Recommandé</span>
                     <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font}`}>{ile.niveau}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="border-t border-[#1a3a6a] mt-auto" />
+              <div className="border-t border-[#1a3a6a]" />
+              <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font}`}>Biome</p>
+              <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>{ile.biome}</span>
+              <div className="border-t border-[#1a3a6a]" />
 
               <div>
                 <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Pokémon locaux</p>
@@ -196,7 +208,7 @@ export default function IlePage() {
       )}
 
       <div className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] p-[8px] shrink-0">
-        <img src={ile.image} className="block rounded-xl h-full w-auto" />
+        <img src={ile.imagebig} className="block rounded-xl h-full w-auto" />
       </div>
 
     </div>

@@ -3,6 +3,7 @@ export type Ile = {
   nom: string;
   numero: string;
   image: string;
+  imagebig: string;
   terrain: string;
   meteo: string;
   difficulte: string;
@@ -10,6 +11,10 @@ export type Ile = {
   niveau: number;
   pokemons: string[];
   description: string;
+  biome : string;
+  type1 : string;
+  type2 : string;
+  type3 : string;
   levelMin: number;
   pickupSon: string;
   sons: {
@@ -25,6 +30,7 @@ export const ILES: Ile[] = [
     nom: "Mélé-Mélé",
     numero: "Île n°1 — Alola",
     image: "/ile1.png",
+    imagebig: "/Mele-Mele-détourée.png",
     terrain: "Boisé",
     meteo: "🌤️ Ensoleillé",
     difficulte: "★★☆☆☆",
@@ -32,6 +38,10 @@ export const ILES: Ile[] = [
     niveau: 12,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    biome : "filling",
+    type1 : "pass",
+    type2 : "pass",
+    type3 : "pass",
     levelMin: 12,
     pickupSon: "/sons/pickup-mele-mele.mp3",
     sons: {
@@ -45,6 +55,7 @@ export const ILES: Ile[] = [
     nom: "Akala",
     numero: "Île n°2 — Alola",
     image: "/ile2.png",
+    imagebig: "/ile2.png",
     terrain: "Volcanique",
     meteo: "⛅ Nuageux",
     difficulte: "★☆☆☆☆",
@@ -52,6 +63,10 @@ export const ILES: Ile[] = [
     niveau: 2,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    biome : "filling",
+    type1 : "pass",
+    type2 : "pass",
+    type3 : "pass",
     levelMin: 2,
     pickupSon: "/sons/pickup-akala.mp3",
     sons: {
@@ -65,6 +80,7 @@ export const ILES: Ile[] = [
     nom: "Ula-Ula",
     numero: "Île n°3 — Alola",
     image: "/ile3.png",
+    imagebig: "/ile3.png",
     terrain: "Montagneux",
     meteo: "🌧️ Pluie",
     difficulte: "★★★★☆",
@@ -72,6 +88,10 @@ export const ILES: Ile[] = [
     niveau: 53,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    biome : "filling",
+    type1 : "pass",
+    type2 : "pass",
+    type3 : "pass",
     levelMin: 53,
     pickupSon: "/sons/pickup-ula-ula.mp3",
     sons: {
@@ -85,6 +105,7 @@ export const ILES: Ile[] = [
     nom: "Poni",
     numero: "Île n°4 — Alola",
     image: "/ile4.png",
+    imagebig: "/ile4.png",
     terrain: "Aride",
     meteo: "⛈️ Orage",
     difficulte: "★★★☆☆",
@@ -92,6 +113,10 @@ export const ILES: Ile[] = [
     niveau: 32,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    biome : "filling",
+    type1 : "pass",
+    type2 : "pass",
+    type3 : "pass",
     levelMin: 32,
     pickupSon: "/sons/pickup-poni.mp3",
     sons: {
@@ -105,6 +130,7 @@ export const ILES: Ile[] = [
     nom: "Laboratoire Aether",
     numero: "Île Scientifique — Alola",
     image: "/ile5.png",
+    imagebig: "/ile5.png",
     terrain: "Artificielle",
     meteo: "🌤️ Ensoleillé",
     difficulte: "★★★★★",
@@ -112,6 +138,10 @@ export const ILES: Ile[] = [
     niveau: 98,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    biome : "filling",
+    type1 : "pass",
+    type2 : "pass",
+    type3 : "pass",
     levelMin: 98,
     pickupSon: "/sons/pickup-labo.mp3",
     sons: {
