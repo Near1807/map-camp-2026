@@ -24,9 +24,10 @@ export function HackTerminal({ onClose, onSuccess }: { onClose: () => void; onSu
   const interval = setInterval(() => {
     if (!mounted) return;
     if (i < LINES.length) {
-      setLines(prev => [...prev, LINES[i]]);
-      i++;
-    } else {
+    const line = LINES[i];
+    if (line) setLines(prev => [...prev, line]); // ← vérifie que la ligne existe
+    i++;
+    }else {
     clearInterval(interval);
     if (mounted) setTimeout(() => setUnlocked(true), 100);
     }
@@ -69,7 +70,7 @@ export function HackTerminal({ onClose, onSuccess }: { onClose: () => void; onSu
         </div>
 
         <div className="p-4 h-72 overflow-y-auto flex flex-col gap-1 font-mono text-[11px]">
-          {lines.map((line, i) => (
+          {lines.filter(Boolean).map((line, i) => (
             <p key={i} className={
               line.includes("GRANTED") || line.includes("autorisé") ? "text-green-400 font-bold" :
               line.includes("ATTENTION") || line.includes("incorrect") ? "text-red-400" :
