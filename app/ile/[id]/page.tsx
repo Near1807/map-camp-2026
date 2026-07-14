@@ -8,6 +8,7 @@ import { useSound } from "../../hooks/useSound";
 import { ILES } from "../../data/iles";
 import { SoundBar } from "@/app/Composants/soundbar";
 import { GROUP_LEVEL } from "@/app/config";
+import { HackTerminal } from "@/app/Composants/hacking";
 
 export default function IlePage() {
   const { id } = useParams();
@@ -39,7 +40,6 @@ export default function IlePage() {
   return (
     <div className="relative w-full h-full bg-[#07111f] flex gap-3 p-[8px] items-stretch">
       {GROUP_LEVEL < ile.levelMin && <LevelWarning />}
-
       {inCall ? (
         <div className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] grow overflow-hidden min-w-0 flex flex-col items-center justify-between p-4 relative">
 
