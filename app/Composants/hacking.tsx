@@ -82,7 +82,6 @@ export function HackTerminal({ onClose, onSuccess }: { onClose: () => void; onSu
             <div className="flex items-center gap-1 mt-1">
               <span className="text-green-400">{">"}</span>
               <input
-                autoFocus
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleInput}
