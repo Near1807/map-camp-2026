@@ -19,18 +19,23 @@ export function HackTerminal({ onClose, onSuccess }: { onClose: () => void; onSu
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < LINES.length) {
-        setLines(prev => [...prev, LINES[i]]);
-        i++;
-      } else {
+  let i = 0;
+  let mounted = true;
+  const interval = setInterval(() => {
+    if (!mounted) return;
+    if (i < LINES.length) {
+      setLines(prev => [...prev, LINES[i]]);
+      i++;
+    } else {
+      clearInterval(interval);
+      if (mounted) setUnlocked(true);
+    }
+  }, 400);
+    return () => {
+        mounted = false;
         clearInterval(interval);
-        setUnlocked(true);
-      }
-    }, 400);
-    return () => clearInterval(interval);
-  }, []);
+    };
+    }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
