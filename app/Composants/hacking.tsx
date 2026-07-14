@@ -27,8 +27,8 @@ export function HackTerminal({ onClose, onSuccess }: { onClose: () => void; onSu
       setLines(prev => [...prev, LINES[i]]);
       i++;
     } else {
-      clearInterval(interval);
-      if (mounted) setUnlocked(true);
+    clearInterval(interval);
+    if (mounted) setTimeout(() => setUnlocked(true), 100);
     }
   }, 400);
     return () => {
