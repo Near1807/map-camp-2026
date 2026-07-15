@@ -34,30 +34,29 @@ export default function Home() {
           <img src="/alola.png" className="block rounded-xl h-full w-auto" />
 
           {ISLANDS.map((ile) => (
-            <Link
-              href={ile.link}
-              key={ile.id}
-              onMouseEnter={() => setHovered(ile.id)}
-              onMouseLeave={() => setHovered(null)}
-              onClick={() => console.log(ile.name)}
-              className="absolute cursor-pointer bg-transparent border-none p-0 transition-all duration-200"
-              style={{
-                top: ile.top,
-                left: ile.left,
-                width: ile.width,
-                filter: hovered === ile.id ? "brightness(0.5)" : "brightness(1)",
-              }}
-            >
-              <img src={ile.src} className="w-full h-auto" draggable={false} />
+            <div key={ile.id} className="absolute" style={{ top: ile.top, left: ile.left, width: ile.width }}>
+              <Link
+                href={ile.link}
+                onMouseEnter={() => setHovered(ile.id)}
+                onMouseLeave={() => setHovered(null)}
+                onClick={() => console.log(ile.name)}
+                className="block cursor-pointer bg-transparent border-none p-0 transition-all duration-200"
+                style={{
+                  filter: hovered === ile.id ? "brightness(0.5)" : "brightness(1)",
+                }}
+              >
+                <img src={ile.src} className="w-full h-auto" draggable={false} />
+              </Link>
 
               <div
                 className="absolute left-1/2 -translate-x-1/2 -top-4 -translate-y-full whitespace-nowrap rounded-xl border-2 border-[#4a9eff] bg-[#0d2545] px-4 py-2 pointer-events-none transition-opacity duration-200 shadow-lg shadow-black/50 z-30"
                 style={{ opacity: hovered === ile.id ? 1 : 0 }}
               >
-                <span className="text-lg text-white font-mono font-bold tracking-wide">{ile.name}</span>
+                <span className="text-lg text-[#7dc8ff] font-mono font-bold tracking-wide">{ile.name}</span>
               </div>
-            </Link>
+            </div>
           ))}
+
         </div>
       </div>
 
