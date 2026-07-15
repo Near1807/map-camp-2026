@@ -118,7 +118,7 @@ export default function Home() {
           <div className="flex gap-6 z-10">
             <div className="flex flex-col items-center gap-1">
               <button
-                onClick={() => console.log("décrocher")}
+                onClick={() =>{ setInCall(true);stopRing()}}
                 className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-400 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-emerald-400"
               >
                 📞
