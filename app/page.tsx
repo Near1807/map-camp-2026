@@ -35,7 +35,7 @@ export default function Home() {
 
           {ISLANDS.map((ile) => (
             <Link
-              href = {ile.link}
+              href={ile.link}
               key={ile.id}
               onMouseEnter={() => setHovered(ile.id)}
               onMouseLeave={() => setHovered(null)}
@@ -49,6 +49,13 @@ export default function Home() {
               }}
             >
               <img src={ile.src} className="w-full h-auto" draggable={false} />
+
+              <div
+                className="absolute left-1/2 -translate-x-1/2 -top-2 -translate-y-full whitespace-nowrap rounded-lg border-2 border-[#1e4a8a] bg-[#0d2545] px-2.5 py-1 pointer-events-none transition-opacity duration-200"
+                style={{ opacity: hovered === ile.id ? 1 : 0 }}
+              >
+                <span className="text-[11px] text-[#7dc8ff] font-mono font-bold">{ile.name}</span>
+              </div>
             </Link>
           ))}
         </div>
