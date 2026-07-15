@@ -54,7 +54,7 @@ export default function Home() {
                 className="absolute left-1/2 -translate-x-1/2 -top-4 -translate-y-full whitespace-nowrap rounded-xl border-2 border-[#4a9eff] bg-[#0d2545] px-4 py-2 pointer-events-none transition-opacity duration-200 shadow-lg shadow-black/50 z-30"
                 style={{ opacity: hovered === ile.id ? 1 : 0 }}
               >
-                <span className="text-lg text-[#7dc8ff] font-mono font-bold tracking-wide">{ile.name}</span>
+                <span className="text-lg text-[#8ebfe2] font-mono font-bold tracking-wide">{ile.name}</span>
               </div>
             </Link>
           ))}
