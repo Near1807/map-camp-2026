@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useCall } from "./context/Callcontext";
+import { GROUP_LEVEL } from "./config";
 
 const ISLANDS = [
   { id: 1, name: "Mélé-Mélé",            src: "/ile1.png", top: "16.8%",  left: "20.7%", width: "27%",link:"/ile/mele-mele" },
@@ -162,6 +163,42 @@ export default function Home() {
                 </div>
               ))}
             </div>
+
+
+
+            <div className="border-t border-[#1a3a6a]" />
+              <div>
+                <p className="text-[9px] text-[#3a6aaa] uppercase tracking-widest font-mono mb-2">Niveau du groupe</p>
+
+                <div className="relative rounded-xl border-2 border-[#4a9eff] bg-gradient-to-br from-[#0d2545] to-[#122f5c] px-4 py-3 overflow-hidden shadow-lg shadow-black/40">
+                  {/* Motif scanline en fond */}
+                  <div
+                    className="absolute inset-0 opacity-10 pointer-events-none"
+                    style={{ backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 4px, #4a9eff 4px, #4a9eff 5px)" }}
+                  />
+
+                  <div className="relative flex items-center justify-between">
+                    <div>
+                      <p className="text-[9px] text-[#5a8ac0] font-mono uppercase tracking-widest">LVL</p>
+                      <p className="text-4xl text-[#7dc8ff] font-mono font-bold leading-none tracking-wider">{GROUP_LEVEL}</p>
+                    </div>
+
+                    <div className="flex flex-col items-end gap-1.5">
+                      <span className="text-[9px] text-emerald-400 font-mono animate-pulse">● SYNC</span>
+                      <div className="flex gap-0.5">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <div
+                            key={i}
+                            className="w-1.5 h-4 rounded-sm"
+                            style={{ background: i < Math.ceil(GROUP_LEVEL / 20) ? "#4a9eff" : "#1a3a6a" }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             <div className="border-t border-[#1a3a6a] mt-auto" />
             <div>
               <p className="text-[9px] text-[#3a6aaa] uppercase tracking-widest font-mono mb-2">Système</p>
