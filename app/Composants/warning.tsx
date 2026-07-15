@@ -46,7 +46,7 @@ export function LevelWarning() {
             onClick={() => setShowHack(true)}
             className="text-[9px] text-red-900 hover:text-red-700 font-mono uppercase tracking-widest transition-colors"
           >
-            Ignorer l'avertissement →
+            ...
           </button>
 
         </div>
