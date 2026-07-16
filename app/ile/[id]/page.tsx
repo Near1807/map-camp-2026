@@ -184,18 +184,21 @@ export default function IlePage() {
               <div className="border-t border-[#1a3a6a]" />
               <div>
                 <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Biome</p>
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-3">
                   {[
                     { nom: ile.biome1, types: [ile.type1, ile.type2, ile.type3] },
                     { nom: ile.biome2, types: [ile.type4, ile.type5, ile.type6] },
                   ]
                     .filter((b) => b.nom && b.nom !== "pass")
                     .map((b, i) => (
-                      <div key={i} className="flex items-center justify-between">
-                        <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>
+                      <div
+                        key={i}
+                        className="flex flex-col items-start gap-1.5 border border-[#1a3a6a] rounded-lg px-3 py-2 bg-[#0a1d3d]"
+                      >
+                        <span className={`text-sm ${STYLE.valueColor} ${STYLE.font} font-bold uppercase tracking-wide`}>
                           {b.nom}
                         </span>
-                        <div className="flex gap-1">
+                        <div className="flex gap-1.5">
                           {b.types
                             .filter((t) => t && t !== "pass")
                             .map((t, j) => (
@@ -203,7 +206,7 @@ export default function IlePage() {
                                 key={j}
                                 src={t.startsWith("/") ? t : `/${t}`}
                                 alt=""
-                                className="w-10 h-10"
+                                className="w-8 h-8"
                               />
                             ))}
                         </div>
