@@ -43,7 +43,7 @@ export const ILES: Ile[] = [
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     biome1 : "Biome-Sur-Naturel",
-    type1 : "pokemon_types/ghost.png",
+    type1 : "/pokemon_types/ghost.png",
     type2 : "pokemon_types/dark.png",
     type3 : "pokemon_types/psy.png",
     biome2 : "pass",
