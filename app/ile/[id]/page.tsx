@@ -34,7 +34,7 @@ export default function IlePage() {
   const { id } = useParams();
   const ile = ILES.find(i => i.id === id);
   const pickup = useSound(ile?.pickupSon ?? "/pickup-default.mp3");
-  const warningSound = useSound("/warning.mp3"); // 👈 add this
+  const warningSound = useSound("/sons/warning.mp3"); // 👈 add this
   const { inCall, setInCall, stopRing } = useCall();
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
