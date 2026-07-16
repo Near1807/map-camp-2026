@@ -34,9 +34,12 @@ export default function IlePage() {
   const { id } = useParams();
   const ile = ILES.find(i => i.id === id);
   const pickup = useSound(ile?.pickupSon ?? "/pickup-default.mp3");
+  const warningSound = useSound("/warning.mp3"); // 👈 add this
   const { inCall, setInCall, stopRing } = useCall();
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
+
+  const showWarning = !!ile && GROUP_LEVEL < ile.levelMin; // 👈 add this
 
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
@@ -46,6 +49,13 @@ export default function IlePage() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => { // 👈 add this whole block
+    if (showWarning) {
+      warningSound.play();
+    }
+    return () => warningSound.stop();
+  }, [showWarning, id]);
+
   if (!ile) return (
     <div className="w-full h-full bg-[#07111f] flex items-center justify-center">
       <p className={`${STYLE.labelColor} ${STYLE.font}`}>Île introuvable</p>
@@ -54,7 +64,7 @@ export default function IlePage() {
 
   return (
     <div className="relative w-full h-full bg-[#07111f] flex gap-3 p-[8px] items-stretch">
-      {GROUP_LEVEL < ile.levelMin && <LevelWarning />}
+      {showWarning && <LevelWarning />}
 
       {inCall ? (
         <div className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] grow overflow-hidden min-w-0 flex flex-col items-center justify-between p-4 relative">
