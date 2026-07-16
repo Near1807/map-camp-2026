@@ -206,7 +206,7 @@ export default function IlePage() {
                                 key={j}
                                 src={t.startsWith("/") ? t : `/${t}`}
                                 alt=""
-                                className="w-8 h-8"
+                                className="w-10 h-10"
                               />
                             ))}
                         </div>
