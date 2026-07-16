@@ -182,7 +182,6 @@ export default function IlePage() {
               </div>
 
               <div className="border-t border-[#1a3a6a]" />
-
               <div>
                 <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Biome</p>
                 <div className="flex flex-col gap-1.5">
@@ -202,9 +201,8 @@ export default function IlePage() {
                             .map((t, j) => (
                               <img
                                 key={j}
-                                src={`/types/${t}.png`}
-                                alt={t}
-                                title={t}
+                                src={t.startsWith("/") ? t : `/${t}`}
+                                alt=""
                                 className="w-5 h-5"
                               />
                             ))}
@@ -213,7 +211,6 @@ export default function IlePage() {
                     ))}
                 </div>
               </div>
-
               <div className="border-t border-[#1a3a6a]" />
 
               <div>
