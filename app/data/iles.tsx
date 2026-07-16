@@ -11,10 +11,14 @@ export type Ile = {
   niveau: number;
   pokemons: string[];
   description: string;
-  biome : string;
+  biome1 : string;
   type1 : string;
   type2 : string;
   type3 : string;
+  biome2 : string;
+  type4 : string;
+  type5 : string;
+  type6 : string;
   levelMin: number;
   pickupSon: string;
   sons: {
@@ -38,10 +42,14 @@ export const ILES: Ile[] = [
     niveau: 12,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    biome : "filling",
-    type1 : "pass",
-    type2 : "pass",
-    type3 : "pass",
+    biome1 : "Biome-Sur-Naturel",
+    type1 : "pokemon_types/ghost.png",
+    type2 : "pokemon_types/dark.png",
+    type3 : "pokemon_types/psy.png",
+    biome2 : "pass",
+    type4 : "pass",
+    type5 : "pass",
+    type6 : "pass",
     levelMin: 12,
     pickupSon: "/sons/pickup-mele-mele.mp3",
     sons: {
@@ -63,10 +71,14 @@ export const ILES: Ile[] = [
     niveau: 2,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    biome : "filling",
+    biome1 : "filling",
     type1 : "pass",
     type2 : "pass",
     type3 : "pass",
+    biome2 : "pass",
+    type4 : "pass",
+    type5 : "pass",
+    type6 : "pass",
     levelMin: 2,
     pickupSon: "/sons/pickup-akala.mp3",
     sons: {
@@ -88,10 +100,14 @@ export const ILES: Ile[] = [
     niveau: 53,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    biome : "filling",
+    biome1 : "filling",
     type1 : "pass",
     type2 : "pass",
     type3 : "pass",
+    biome2 : "pass",
+    type4 : "pass",
+    type5 : "pass",
+    type6 : "pass",
     levelMin: 53,
     pickupSon: "/sons/pickup-ula-ula.mp3",
     sons: {
@@ -113,10 +129,14 @@ export const ILES: Ile[] = [
     niveau: 32,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    biome : "filling",
+    biome1 : "filling",
     type1 : "pass",
     type2 : "pass",
     type3 : "pass",
+    biome2 : "pass",
+    type4 : "pass",
+    type5 : "pass",
+    type6 : "pass",
     levelMin: 32,
     pickupSon: "/sons/pickup-poni.mp3",
     sons: {
@@ -138,10 +158,14 @@ export const ILES: Ile[] = [
     niveau: 98,
     pokemons: ["Rattata", "Pikipek", "Yungoos"],
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    biome : "filling",
+    biome1 : "filling",
     type1 : "pass",
     type2 : "pass",
     type3 : "pass",
+    biome2 : "pass",
+    type4 : "pass",
+    type5 : "pass",
+    type6 : "pass",
     levelMin: 98,
     pickupSon: "/sons/pickup-labo.mp3",
     sons: {

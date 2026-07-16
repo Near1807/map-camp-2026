@@ -182,8 +182,38 @@ export default function IlePage() {
               </div>
 
               <div className="border-t border-[#1a3a6a]" />
-              <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font}`}>Biome</p>
-              <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>{ile.biome}</span>
+
+              <div>
+                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Biome</p>
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    { nom: ile.biome1, types: [ile.type1, ile.type2, ile.type3] },
+                    { nom: ile.biome2, types: [ile.type4, ile.type5, ile.type6] },
+                  ]
+                    .filter((b) => b.nom && b.nom !== "pass")
+                    .map((b, i) => (
+                      <div key={i} className="flex items-center justify-between">
+                        <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>
+                          {b.nom}
+                        </span>
+                        <div className="flex gap-1">
+                          {b.types
+                            .filter((t) => t && t !== "pass")
+                            .map((t, j) => (
+                              <img
+                                key={j}
+                                src={`/types/${t}.png`}
+                                alt={t}
+                                title={t}
+                                className="w-5 h-5"
+                              />
+                            ))}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
               <div className="border-t border-[#1a3a6a]" />
 
               <div>
