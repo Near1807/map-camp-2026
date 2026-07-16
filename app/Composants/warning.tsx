@@ -11,7 +11,7 @@ export function LevelWarning() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 z-[5000] bg-black/80 flex items-center justify-center">
+      <div className="fixed top-0 left-0 right-0 bottom-0 z-[5000] bg-black/50 flex items-center justify-center">
         <div className="border-2 border-red-500 bg-[#1a0000] rounded-2xl p-8 flex flex-col items-center gap-4 max-w-sm w-full mx-4">
           
           <div className="text-red-500 text-5xl animate-pulse">⚠</div>
