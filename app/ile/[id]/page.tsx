@@ -132,7 +132,7 @@ export default function IlePage() {
       ) : (
         <div ref={sidebarRef} className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] grow overflow-hidden min-w-0">
           {visible && (
-            <div className="h-full w-full p-4 flex flex-col gap-4">
+            <div className="h-full w-full p-4 flex flex-col gap-4 overflow-y-auto overscroll-contain">
 
               <Link
                 href="/"
