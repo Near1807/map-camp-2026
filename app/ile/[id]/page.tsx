@@ -8,6 +8,7 @@ import { useSound } from "../../hooks/useSound";
 import { ILES } from "../../data/iles";
 import { SoundBar } from "@/app/Composants/soundbar";
 import { GROUP_LEVEL } from "@/app/config";
+import { ScrollableNoBar } from "../../Composants/scrollbar"
 
 const STYLE = {
   // Taille des labels/titres de section (ex: "Île", "Météo", "Infos")
@@ -132,7 +133,7 @@ export default function IlePage() {
       ) : (
         <div ref={sidebarRef} className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] grow overflow-hidden min-w-0">
           {visible && (
-            <div className="h-full w-full p-4 flex flex-col gap-4 overflow-y-auto overscroll-contain">
+            <ScrollableNoBar className="h-full w-full p-4 flex flex-col gap-4">
 
               <Link
                 href="/"
@@ -234,7 +235,7 @@ export default function IlePage() {
 
               <div className="border-t border-[#1a3a6a]" />
 
-            </div>
+            </ScrollableNoBar>
           )}
         </div>
       )}
