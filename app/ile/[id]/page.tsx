@@ -175,15 +175,19 @@ export default function IlePage() {
                 <p className={`${STYLE.subtitleSize} ${STYLE.labelColor} ${STYLE.font} mt-1`}>{ile.numero}</p>
               </Card>
 
-              <Card>
-                <SectionTitle>{ile.biome1}</SectionTitle>
-                <p className={`${STYLE.bodySize} ${STYLE.textColor} ${STYLE.font} leading-relaxed`}>{ile.description1}</p>
-              </Card>
+              {ile.biome1 && ile.biome1 !== "pass" && (
+                <Card>
+                  <SectionTitle>{ile.biome1}</SectionTitle>
+                  <p className={`${STYLE.bodySize} ${STYLE.textColor} ${STYLE.font} leading-relaxed`}>{ile.description1}</p>
+                </Card>
+              )}
 
-              <Card>
-                <SectionTitle>{ile.biome2}</SectionTitle>
-                <p className={`${STYLE.bodySize} ${STYLE.textColor} ${STYLE.font} leading-relaxed`}>{ile.description2}</p>
-              </Card>
+              {ile.biome2 && ile.biome2 !== "pass" && (
+                <Card>
+                  <SectionTitle>{ile.biome2}</SectionTitle>
+                  <p className={`${STYLE.bodySize} ${STYLE.textColor} ${STYLE.font} leading-relaxed`}>{ile.description2}</p>
+                </Card>
+              )}
 
               <Card>
                 <SectionTitle>Infos</SectionTitle>
