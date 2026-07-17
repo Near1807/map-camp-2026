@@ -211,10 +211,9 @@ export default function IlePage() {
                 </div>
               </Card>
 
-              <div>
-                
-                <div className="flex flex-col gap-3">
+              <Card>
                 <SectionTitle>Biome</SectionTitle>
+                <div className="flex flex-col gap-2">
                   {[
                     { nom: ile.biome1, types: [ile.type1, ile.type2, ile.type3] },
                     { nom: ile.biome2, types: [ile.type4, ile.type5, ile.type6] },
@@ -223,9 +222,9 @@ export default function IlePage() {
                     .map((b, i) => (
                       <div
                         key={i}
-                        className="flex flex-col items-start gap-1.5 border border-[#1a3a6a] rounded-lg px-3 py-2 bg-[#0a1d3d]"
+                        className={`flex flex-col items-start gap-1.5 border ${STYLE.cardBorder} rounded-md px-3 py-2 bg-[#0d2545]`}
                       >
-                        <span className={`text-sm ${STYLE.valueColor} ${STYLE.font} font-bold uppercase tracking-wide`}>
+                        <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font} font-bold uppercase tracking-wide`}>
                           {b.nom}
                         </span>
                         <div className="flex gap-1.5">
@@ -243,7 +242,7 @@ export default function IlePage() {
                       </div>
                     ))}
                 </div>
-              </div>
+              </Card>
 
               <Card>
                 <SectionTitle>Pokémon locaux</SectionTitle>
