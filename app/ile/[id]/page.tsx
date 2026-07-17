@@ -8,7 +8,7 @@ import { useSound } from "../../hooks/useSound";
 import { ILES } from "../../data/iles";
 import { SoundBar } from "@/app/Composants/soundbar";
 import { GROUP_LEVEL } from "@/app/config";
-import { ScrollableNoBar } from "../../Composants/scrollbar"
+import { ScrollableNoBar } from "../../Composants/scrollbar";
 
 const STYLE = {
   // Taille des labels/titres de section (ex: "Île", "Météo", "Infos")
@@ -20,16 +20,42 @@ const STYLE = {
   // Taille du sous-titre (ex: "Île n°1 — Alola")
   subtitleSize: "text-[13px]",
   // Taille du corps de texte (description)
-  bodySize: "text-[11px]",
+  bodySize: "text-[12px]",
   // Police — font-mono pour le look terminal, font-sans pour plus lisible
   font: "font-mono",
   // Couleur des labels/titres de section (bleu foncé discret)
   labelColor: "text-[#3a6aaa]",
   // Couleur des valeurs principales (bleu clair lumineux)
   valueColor: "text-[#7dc8ff]",
-  // Couleur du texte secondaire (description, pokémon, etc.)
+  // Couleur du texte de corps — éclairci pour rester lisible sur les cartes
+  textColor: "text-[#a8c8e8]",
+  // Couleur du texte secondaire (pokémon, labels d'infos)
   mutedColor: "text-[#5a8ac0]",
+  // Fond des cartes
+  cardBg: "bg-[#0a1d3d]",
+  // Bordure des cartes
+  cardBorder: "border-[#1a3a6a]",
 };
+
+// Petit repère vertical devant chaque titre de section — signature visuelle du panneau
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-2 mb-2">
+      <div className="w-1 h-3 bg-[#4a9eff] shrink-0" />
+      <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font}`}>
+        {children}
+      </p>
+    </div>
+  );
+}
+
+function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`border ${STYLE.cardBorder} rounded-lg ${STYLE.cardBg} px-3 py-3 ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 export default function IlePage() {
   const { id } = useParams();
@@ -133,7 +159,7 @@ export default function IlePage() {
       ) : (
         <div ref={sidebarRef} className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] grow overflow-hidden min-w-0">
           {visible && (
-            <ScrollableNoBar className="h-full w-full p-4 flex flex-col gap-4">
+            <ScrollableNoBar className="h-full w-full p-4 flex flex-col gap-3">
 
               <Link
                 href="/"
@@ -143,53 +169,46 @@ export default function IlePage() {
                 ← Carte
               </Link>
 
-              <div className="border-t border-[#1a3a6a]" />
-
-              <div>
+              <Card>
                 <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-1`}>Île</p>
                 <p className={`${STYLE.titleSize} ${STYLE.valueColor} ${STYLE.font} font-bold`}>{ile.nom}</p>
                 <p className={`${STYLE.subtitleSize} ${STYLE.labelColor} ${STYLE.font} mt-1`}>{ile.numero}</p>
-              </div>
+              </Card>
 
-              <div className="border-t border-[#1a3a6a]" />
+              <Card>
+                <SectionTitle>{ile.biome1}</SectionTitle>
+                <p className={`${STYLE.bodySize} ${STYLE.textColor} ${STYLE.font} leading-relaxed`}>{ile.description1}</p>
+              </Card>
 
-              <div>
-                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>{ile.biome1}</p>
-                <p className={`${STYLE.bodySize} ${STYLE.mutedColor} ${STYLE.font} leading-relaxed`}>{ile.description1}</p>
-              </div>
+              <Card>
+                <SectionTitle>{ile.biome2}</SectionTitle>
+                <p className={`${STYLE.bodySize} ${STYLE.textColor} ${STYLE.font} leading-relaxed`}>{ile.description2}</p>
+              </Card>
 
-              <div>
-                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>{ile.biome2}</p>
-                <p className={`${STYLE.bodySize} ${STYLE.mutedColor} ${STYLE.font} leading-relaxed`}>{ile.description2}</p>
-              </div>
-
-              <div className="border-t border-[#1a3a6a]" />
-
-              <div>
-                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Infos</p>
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Terrain</span>
-                    <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font}`}>{ile.terrain}</span>
+              <Card>
+                <SectionTitle>Infos</SectionTitle>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className={`border ${STYLE.cardBorder} rounded-md px-2 py-1.5 flex flex-col`}>
+                    <span className={`text-[10px] ${STYLE.mutedColor} ${STYLE.font} uppercase tracking-wide`}>Terrain</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font} font-bold`}>{ile.terrain}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Météo</span>
-                    <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font}`}>{ile.meteo}</span>
+                  <div className={`border ${STYLE.cardBorder} rounded-md px-2 py-1.5 flex flex-col`}>
+                    <span className={`text-[10px] ${STYLE.mutedColor} ${STYLE.font} uppercase tracking-wide`}>Météo</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font} font-bold`}>{ile.meteo}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Difficulté</span>
-                    <span className={`${STYLE.valueSize} ${STYLE.font} ${ile.difficulteColor}`}>{ile.difficulte}</span>
+                  <div className={`border ${STYLE.cardBorder} rounded-md px-2 py-1.5 flex flex-col`}>
+                    <span className={`text-[10px] ${STYLE.mutedColor} ${STYLE.font} uppercase tracking-wide`}>Difficulté</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.font} font-bold ${ile.difficulteColor}`}>{ile.difficulte}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className={`${STYLE.valueSize} ${STYLE.mutedColor} ${STYLE.font}`}>Niveau Recommandé</span>
-                    <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font}`}>{ile.niveau}</span>
+                  <div className={`border ${STYLE.cardBorder} rounded-md px-2 py-1.5 flex flex-col`}>
+                    <span className={`text-[10px] ${STYLE.mutedColor} ${STYLE.font} uppercase tracking-wide`}>Niveau reco.</span>
+                    <span className={`${STYLE.valueSize} ${STYLE.valueColor} ${STYLE.font} font-bold`}>{ile.niveau}</span>
                   </div>
                 </div>
-              </div>
+              </Card>
 
-              <div className="border-t border-[#1a3a6a]" />
               <div>
-                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Biome</p>
+                <SectionTitle>Biome</SectionTitle>
                 <div className="flex flex-col gap-3">
                   {[
                     { nom: ile.biome1, types: [ile.type1, ile.type2, ile.type3] },
@@ -220,20 +239,17 @@ export default function IlePage() {
                     ))}
                 </div>
               </div>
-              <div className="border-t border-[#1a3a6a]" />
 
-              <div>
-                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Pokémon locaux</p>
+              <Card>
+                <SectionTitle>Pokémon locaux</SectionTitle>
                 <div className="flex flex-wrap gap-2">
                   {ile.pokemons.map((p) => (
-                    <span key={p} className={`${STYLE.valueSize} ${STYLE.font} ${STYLE.mutedColor} border border-[#1a3a6a] rounded px-2 py-0.5`}>
+                    <span key={p} className={`${STYLE.valueSize} ${STYLE.font} ${STYLE.valueColor} border ${STYLE.cardBorder} rounded px-2 py-0.5 bg-[#0d2545]`}>
                       {p}
                     </span>
                   ))}
                 </div>
-              </div>
-
-              <div className="border-t border-[#1a3a6a]" />
+              </Card>
 
             </ScrollableNoBar>
           )}
