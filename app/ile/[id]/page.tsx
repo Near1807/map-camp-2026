@@ -212,8 +212,9 @@ export default function IlePage() {
               </Card>
 
               <div>
-                <SectionTitle>Biome</SectionTitle>
+                
                 <div className="flex flex-col gap-3">
+                <SectionTitle>Biome</SectionTitle>
                   {[
                     { nom: ile.biome1, types: [ile.type1, ile.type2, ile.type3] },
                     { nom: ile.biome2, types: [ile.type4, ile.type5, ile.type6] },
