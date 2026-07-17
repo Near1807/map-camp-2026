@@ -153,8 +153,13 @@ export default function IlePage() {
               <div className="border-t border-[#1a3a6a]" />
 
               <div>
-                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Description</p>
-                <p className={`${STYLE.bodySize} ${STYLE.mutedColor} ${STYLE.font} leading-relaxed`}>{ile.description}</p>
+                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>{ile.biome1}</p>
+                <p className={`${STYLE.bodySize} ${STYLE.mutedColor} ${STYLE.font} leading-relaxed`}>{ile.description1}</p>
+              </div>
+
+              <div>
+                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>{ile.biome2}</p>
+                <p className={`${STYLE.bodySize} ${STYLE.mutedColor} ${STYLE.font} leading-relaxed`}>{ile.description2}</p>
               </div>
 
               <div className="border-t border-[#1a3a6a]" />
@@ -228,19 +233,6 @@ export default function IlePage() {
               </div>
 
               <div className="border-t border-[#1a3a6a]" />
-
-              <div>
-                <p className={`${STYLE.labelSize} ${STYLE.labelColor} uppercase tracking-widest ${STYLE.font} mb-2`}>Écouter</p>
-                <div className="flex flex-col gap-2">
-                  {[
-                    { label: "Terrain",        src: ile.sons.terrain },
-                    { label: "Faune",          src: ile.sons.faune },
-                    { label: "Culture locale", src: ile.sons.culture },
-                  ].map(({ label, src }) => (
-                    <SoundBar key={label} label={label} src={src} />
-                  ))}
-                </div>
-              </div>
 
             </div>
           )}
