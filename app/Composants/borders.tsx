@@ -3,17 +3,35 @@
 import { GROUP_LEVEL } from "../config";
 import { useCall } from "../context/Callcontext";
 
+// Petit rivet plat — anneau métallique fin, pas de sphère
 function Rivet({ style }: { style?: React.CSSProperties }) {
   return (
     <div style={{
       position: 'absolute',
-      width: 6,
-      height: 6,
+      width: 5,
+      height: 5,
       borderRadius: '50%',
-      background: 'radial-gradient(circle at 35% 30%, #ffdddd, #990000 60%, #550000 100%)',
-      boxShadow: 'inset -1px -1px 1px rgba(0,0,0,0.6), 0 1px 1px rgba(0,0,0,0.4)',
+      background: '#7a0000',
+      border: '1px solid #440000',
+      boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.15)',
       ...style,
     }} />
+  );
+}
+
+// Petite grille de ventilation — traits fins groupés
+function VentGrille({ style, count = 4 }: { style?: React.CSSProperties; count?: number }) {
+  return (
+    <div style={{ position: 'absolute', display: 'flex', gap: 2, ...style }}>
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} style={{
+          width: 1.5,
+          height: 14,
+          background: 'rgba(0,0,0,0.3)',
+          boxShadow: '1px 0 0 rgba(255,255,255,0.12)',
+        }} />
+      ))}
+    </div>
   );
 }
 
@@ -22,10 +40,7 @@ export function PokedexHeader() {
   return (
     <header style={{
       zIndex: 100,
-      background: `
-        linear-gradient(180deg, #ff3333 0%, #dd1111 8%, #cc0000 45%, #a80000 85%, #8f0000 100%),
-        radial-gradient(ellipse 120% 60% at 30% -10%, rgba(255,180,180,0.35), transparent 60%)
-      `,
+      background: '#c40000',
       height: '60px',
       clipPath: 'polygon(0 0, 100% 0, 100% 100%, 26% 100%, 24% 65%, 0 65%)',
       position: 'relative',
@@ -34,97 +49,90 @@ export function PokedexHeader() {
       padding: '0 16px',
       paddingBottom: '20px',
       gap: '10px',
-      boxShadow: `
-        inset 0 2px 0 rgba(255,255,255,0.25),
-        inset 0 -6px 10px rgba(0,0,0,0.35),
-        0 3px 8px rgba(0,0,0,0.4)
-      `,
       overflow: 'hidden',
     }}>
 
-      {/* Ligne de trim horizontale claire, juste sous le bord supérieur */}
-      <div style={{
-        position: 'absolute', top: 4, left: 0, right: 0, height: 1,
-        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5) 15%, rgba(255,255,255,0.5) 85%, transparent)',
-      }} />
+      {/* Trace de biseau — chaque bord a sa propre ligne selon l'orientation de la lumière */}
+      <svg
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        {/* bord haut — clair, la lumière tombe dessus */}
+        <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(255,220,220,0.65)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        {/* bord droit — mi-clair */}
+        <line x1="100" y1="0" x2="100" y2="100" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        {/* bord bas — sombre, en creux */}
+        <line x1="100" y1="100" x2="26" y2="100" stroke="rgba(0,0,0,0.5)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        {/* biseau de l'encoche */}
+        <line x1="26" y1="100" x2="24" y2="65" stroke="rgba(0,0,0,0.45)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        <line x1="24" y1="65" x2="0" y2="65" stroke="rgba(0,0,0,0.5)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        {/* bord gauche — mi-clair */}
+        <line x1="0" y1="65" x2="0" y2="0" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
 
-      {/* Ligne de trim horizontale sombre, plus bas — sépare "bandeau haut" du corps */}
-      <div style={{
-        position: 'absolute', top: 14, left: 0, right: 0, height: 2,
-        background: 'linear-gradient(90deg, transparent, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.4) 90%, transparent)',
-        boxShadow: '0 1px 0 rgba(255,255,255,0.15)',
-      }} />
+        {/* Ligne de séparation interne — sépare le bandeau du corps */}
+        <line x1="4" y1="18" x2="96" y2="18" stroke="rgba(0,0,0,0.3)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <line x1="4" y1="19.5" x2="96" y2="19.5" stroke="rgba(255,255,255,0.12)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+      </svg>
 
-      {/* Séparateur vertical après la bille de niveau */}
-      <div style={{
-        position: 'absolute', top: 18, bottom: 22, left: 54, width: 2,
-        background: 'linear-gradient(180deg, transparent, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.35) 80%, transparent)',
-        boxShadow: '1px 0 0 rgba(255,255,255,0.15)',
-      }} />
-
-      {/* Séparateur vertical avant le groupe de lumières */}
-      <div style={{
-        position: 'absolute', top: 18, bottom: 22, right: 76, width: 2,
-        background: 'linear-gradient(180deg, transparent, rgba(0,0,0,0.35) 20%, rgba(0,0,0,0.35) 80%, transparent)',
-        boxShadow: '1px 0 0 rgba(255,255,255,0.15)',
-      }} />
-
-      {/* Rivets dans les coins / points d'ancrage du panneau */}
-      <Rivet style={{ top: 6, left: 10 }} />
-      <Rivet style={{ top: 6, right: 10 }} />
-      <Rivet style={{ bottom: 8, left: 65 }} />
+      <Rivet style={{ top: 6, left: 8 }} />
+      <Rivet style={{ top: 6, right: 8 }} />
+      <Rivet style={{ top: 24, left: 8 }} />
 
       <div style={{
-          width: 28,
-          height: 28,
+          width: 26,
+          height: 26,
           borderRadius: '50%',
-          background: 'radial-gradient(circle at 32% 28%, #a8d4ff, #60aaff 35%, #0055cc 75%, #003399 100%)',
-          border: '3px solid #002266',
-          boxShadow: `
-            inset -2px -2px 3px rgba(0,0,0,0.4),
-            inset 2px 2px 3px rgba(255,255,255,0.5),
-            0 2px 4px rgba(0,0,0,0.5)
-          `,
+          background: '#0055cc',
+          border: '2px solid #002266',
+          boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.2)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#eaf2ff',
-          fontSize: '20px',
+          fontSize: '18px',
           fontWeight: 'bold',
-          textShadow: '0 1px 2px rgba(0,0,0,0.5)',
-          paddingTop:'2px',
+          paddingTop: '1px',
           flexShrink: 0,
           zIndex: 2,
         }}>
         {GROUP_LEVEL}
       </div>
 
+      <VentGrille style={{ top: 22, left: 62 }} count={3} />
+
       <div style={{ flex: 1 }} />
 
       {[
-        { color: '#ff5555', dark: '#a80000', onClick: undefined },
-        { color: '#ffdd44', dark: '#a87700', onClick: () => {
-          if (inCall) {
-            setInCall(false);
-            stopRing();
-          } else {
-            setInCall(true);
-            playRing();
-          }
-        }},
-        { color: '#55dd55', dark: '#0a7a0a', onClick: undefined },
-      ].map(({ color, dark, onClick }, i) => (
-        <div key={i} onClick={onClick} style={{
-          width: 12, height: 12, borderRadius: '50%',
-          background: `radial-gradient(circle at 32% 28%, #fff, ${color} 40%, ${dark} 100%)`,
-          boxShadow: `
-            inset -1px -1px 2px rgba(0,0,0,0.4),
-            0 1px 2px rgba(0,0,0,0.5)
-          `,
-          cursor: onClick ? 'pointer' : 'default',
-          zIndex: 2,
-        }} />
-      ))}
+        { color: '#ff4444', ring: '#7a0000' },
+        { color: '#ffcc00', ring: '#7a5500' },
+        { color: '#44cc44', ring: '#0a5a0a' },
+      ].map(({ color, ring }, i) => {
+        const isYellow = color === '#ffcc00';
+        return (
+          <div
+            key={i}
+            onClick={isYellow ? () => {
+              if (inCall) { setInCall(false); stopRing(); }
+              else { setInCall(true); playRing(); }
+            } : undefined}
+            style={{
+              position: 'relative',
+              width: 12, height: 12, borderRadius: '50%',
+              background: color,
+              border: `1.5px solid ${ring}`,
+              cursor: isYellow ? 'pointer' : 'default',
+              zIndex: 2,
+            }}
+          >
+            <div style={{
+              position: 'absolute', top: 2, left: 2,
+              width: 3, height: 3, borderRadius: '50%',
+              background: 'rgba(255,255,255,0.7)',
+            }} />
+          </div>
+        );
+      })}
     </header>
   );
 }
@@ -133,10 +141,7 @@ export function PokedexFooter() {
   return (
     <footer style={{
       zIndex: 100,
-      background: `
-        linear-gradient(180deg, #8f0000 0%, #a80000 15%, #cc0000 55%, #dd1111 92%, #ff3333 100%),
-        radial-gradient(ellipse 120% 60% at 70% 110%, rgba(255,180,180,0.25), transparent 60%)
-      `,
+      background: '#c40000',
       height: '52px',
       clipPath: 'polygon(0 0, 0 100%, 100% 100%, 100% 0, 62% 0, 60% 25%, 40% 25%, 38% 0)',
       position: 'relative',
@@ -145,29 +150,35 @@ export function PokedexFooter() {
       justifyContent: 'center',
       gap: '12px',
       padding: '0 24px 8px',
-      boxShadow: `
-        inset 0 -2px 0 rgba(0,0,0,0.3),
-        inset 0 6px 10px rgba(0,0,0,0.3),
-        0 -3px 8px rgba(0,0,0,0.35)
-      `,
       overflow: 'hidden',
     }}>
 
-      {/* Ligne de trim horizontale sombre juste au-dessus du bord bas */}
-      <div style={{
-        position: 'absolute', bottom: 4, left: 0, right: 0, height: 1,
-        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.35) 15%, rgba(255,255,255,0.35) 85%, transparent)',
-      }} />
+      <svg
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+      >
+        {/* bord gauche — mi-clair */}
+        <line x1="0" y1="0" x2="0" y2="100" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        {/* bord bas — sombre */}
+        <line x1="0" y1="100" x2="100" y2="100" stroke="rgba(0,0,0,0.5)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        {/* bord droit — mi-clair */}
+        <line x1="100" y1="100" x2="100" y2="0" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        {/* biseau de l'encoche */}
+        <line x1="100" y1="0" x2="62" y2="0" stroke="rgba(255,220,220,0.5)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        <line x1="62" y1="0" x2="60" y2="25" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        <line x1="60" y1="25" x2="40" y2="25" stroke="rgba(0,0,0,0.45)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        <line x1="40" y1="25" x2="38" y2="0" stroke="rgba(0,0,0,0.4)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
+        <line x1="38" y1="0" x2="0" y2="0" stroke="rgba(255,220,220,0.5)" strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
 
-      {/* Ligne de trim sombre, séparant le corps du bandeau bas */}
-      <div style={{
-        position: 'absolute', bottom: 12, left: 0, right: 0, height: 2,
-        background: 'linear-gradient(90deg, transparent, rgba(0,0,0,0.35) 10%, rgba(0,0,0,0.35) 90%, transparent)',
-      }} />
+        {/* Ligne de séparation interne — proche du bord bas */}
+        <line x1="4" y1="82" x2="96" y2="82" stroke="rgba(0,0,0,0.3)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+        <line x1="4" y1="80.5" x2="96" y2="80.5" stroke="rgba(255,255,255,0.1)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+      </svg>
 
-      {/* Rivets */}
-      <Rivet style={{ bottom: 6, left: 14 }} />
-      <Rivet style={{ bottom: 6, right: 14 }} />
+      <Rivet style={{ bottom: 6, left: 10 }} />
+      <Rivet style={{ bottom: 6, right: 10 }} />
+      <VentGrille style={{ bottom: 8, left: '50%', transform: 'translateX(-50%)' }} count={5} />
 
     </footer>
   );
