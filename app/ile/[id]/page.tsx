@@ -60,10 +60,17 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 export default function IlePage() {
   const { id } = useParams();
   const ile = ILES.find(i => i.id === id);
-  const pickup = useSound(ile?.pickupSon ?? "/pickup-default.mp3");
+  const { inCall, setInCall, stopRing, callId } = useCall();
+
+  // 👉 callId === 2 -> bouton vert -> pickupSon2 (avec repli sur pickupSon si pas encore renseigné)
+  const pickupSrc =
+    callId === 2
+      ? (ile?.pickupSon2 && ile.pickupSon2 !== "pass" ? ile.pickupSon2 : ile?.pickupSon)
+      : ile?.pickupSon;
+
+  const pickup = useSound(pickupSrc ?? "/pickup-default.mp3");
   const [answered, setAnswered] = useState(false);
   const warningSound = useSound("/sons/warning.mp3"); // 👈 add this
-  const { inCall, setInCall, stopRing } = useCall();
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
 
@@ -153,7 +160,7 @@ export default function IlePage() {
               )}
             <div className="flex flex-col items-center gap-1">
               <button
-                onClick={() => { setInCall(false); stopRing(); pickup.stop(); }}
+                onClick={() => { setInCall(false); stopRing(); pickup.stop(); setAnswered(false); }}
                 className="w-12 h-12 rounded-full bg-red-700 hover:bg-red-500 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-red-500"
               >📵</button>
               <span className={`text-[8px] text-red-400 ${STYLE.font} uppercase tracking-wider`}>Raccrocher</span>

@@ -22,6 +22,7 @@ export type Ile = {
   type6 : string;
   levelMin: number;
   pickupSon: string;
+  pickupSon2: string;
 };
 
 export const ILES: Ile[] = [
@@ -50,6 +51,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt occulte majeur.`,
     type6 : "pass",
     levelMin: 12,
     pickupSon: "/Appels Chen/Jour 5.wav",
+    pickupSon2: "pass",
   },
   {
     id: "akala",
@@ -77,6 +79,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt gastronomique majeur.`,
     type6 : "/pokemon_types/fire.png",
     levelMin: 2,
     pickupSon: "/Appels Chen/Jour 1.wav",
+    pickupSon2: "pass",
   },
   {
     id: "ula-ula",
@@ -104,6 +107,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt naturel majeur.`,
     type6 : "/pokemon_types/bug.png",
     levelMin: 53,
     pickupSon: "/Appels Chen/Jour 3.wav",
+    pickupSon2: "pass",
   },
   {
     id: "poni",
@@ -130,6 +134,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt hostile majeur.`,
     type6 : "pass",
     levelMin: 32,
     pickupSon: "/Appels Chen/Jour 6.wav",
+    pickupSon2: "pass",
   },
   {
     id: "labo",
@@ -156,5 +161,6 @@ Fin de l'entrée. Domaine classé zone d'intérêt festif majeur.`,
     type6 : "pass",
     levelMin: 98,
     pickupSon: "/Appels Chen/Happening fin.wav",
+    pickupSon2: "pass",
   },
 ];
