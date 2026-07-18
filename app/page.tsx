@@ -13,10 +13,18 @@ const ISLANDS = [
   { id: 5, name: "Labo flottant",      src: "/ile5.png", top: "41.47%", left: "39%", width: "9.5%",link:"/ile/labo" },
 ];
 
+const CALL_SOUNDS: Record<number, string> = {
+  1: "/Appels Chen/Happening fin.wav",
+  2: "/Appels Chen/SON_2_A_REMPLACER.wav",
+};
+
+
+
 export default function Home() {
-  const { inCall, setInCall, playRing, stopRing } = useCall();
+  const { inCall, setInCall, playRing, stopRing, callId } = useCall();
   const [answered, setAnswered] = useState(false);
-  const pickup = useSound("/Appels Chen/Happening fin.wav");
+  
+  const pickup = useSound(CALL_SOUNDS[callId] ?? CALL_SOUNDS[1]);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -132,7 +140,7 @@ export default function Home() {
               )}
             <div className="flex flex-col items-center gap-1">
               <button
-                onClick={() =>{ setInCall(false);stopRing();pickup.stop();}}
+                onClick={() =>{ setInCall(false);stopRing();pickup.stop();setAnswered(false);}}
                 className="w-12 h-12 rounded-full bg-red-700 hover:bg-red-500 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-red-500"
               >
                 📵

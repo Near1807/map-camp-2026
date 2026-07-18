@@ -6,9 +6,19 @@ const CallContext = createContext<{
   setInCall: (v: boolean) => void;
   playRing: () => void;
   stopRing: () => void;
-}>({ inCall: false, setInCall: () => {}, playRing: () => {}, stopRing: () => {} });
+  callId: number;
+  setCallId: (v: number) => void;
+}>({
+  inCall: false,
+  setInCall: () => {},
+  playRing: () => {},
+  stopRing: () => {},
+  callId: 1,
+  setCallId: () => {},
+});
 
 export function CallProvider({ children }: { children: React.ReactNode }) {
+  const [callId, setCallId] = useState(1);
   const [inCall, setInCall] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -26,7 +36,7 @@ export function CallProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <CallContext.Provider value={{ inCall, setInCall, playRing, stopRing }}>
+    <CallContext.Provider value={{ inCall, setInCall, playRing, stopRing, callId, setCallId }}>
       {children}
     </CallContext.Provider>
   );

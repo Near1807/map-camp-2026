@@ -3,8 +3,19 @@
 import { GROUP_LEVEL } from "../config";
 import { useCall } from "../context/Callcontext";
 
+
 export function PokedexHeader() {
-  const { inCall, setInCall, playRing, stopRing } = useCall();
+  const { inCall, setInCall, playRing, stopRing, setCallId } = useCall();
+  const triggerCall = (id: number) => {
+    if (inCall) {
+      setInCall(false);
+      stopRing();
+    } else {
+      setCallId(id);
+      setInCall(true);
+      playRing();
+    }
+  };
   return (
     <header style={{
       zIndex: 100,
@@ -37,16 +48,8 @@ export function PokedexHeader() {
       </div>
       {[
         { color: '#ff4444', onClick: undefined },
-        { color: '#ffcc00', onClick: () => {
-          if (inCall) {
-            setInCall(false);
-            stopRing();
-          } else {
-            setInCall(true);
-            playRing();
-          }
-        }},
-        { color: '#44cc44', onClick: undefined },
+        { color: '#ffcc00', onClick: () => triggerCall(1) },
+        { color: '#44cc44', onClick: () => triggerCall(2) },
       ].map(({ color, onClick }, i) => (
         <div key={i} onClick={onClick} style={{
           width: 12, height: 12, borderRadius: '50%',
