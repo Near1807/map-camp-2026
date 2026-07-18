@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useCall } from "./context/Callcontext";
 import { GROUP_LEVEL } from "./config";
+import { useSound } from "./hooks/useSound";
 
 const ISLANDS = [
   { id: 1, name: "Mélé-Mélé",            src: "/ile1.png", top: "16.8%",  left: "20.7%", width: "27%",link:"/ile/mele-mele" },
@@ -14,6 +15,7 @@ const ISLANDS = [
 
 export default function Home() {
   const { inCall, setInCall, playRing, stopRing } = useCall();
+  const pickup = useSound("/Appels Chen/Happening fin.wav");
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -118,7 +120,7 @@ export default function Home() {
           <div className="flex gap-6 z-10">
             <div className="flex flex-col items-center gap-1">
               <button
-                onClick={() =>{ setInCall(true);stopRing()}}
+                onClick={() =>{ pickup.play();setInCall(true);stopRing()}}
                 className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-400 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-emerald-400"
               >
                 📞
