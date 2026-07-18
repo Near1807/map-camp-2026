@@ -272,8 +272,13 @@ export default function IlePage() {
         </div>
       )}
 
-      <div className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] p-[8px] shrink-0">
-        <img src={ile.imagebig} className="block rounded-xl h-full w-auto" />
+      {/* Panneau visuel — la taille de l'image s'ajuste via ile.imageRatio (voir data/iles.ts) */}
+      <div className="rounded-2xl border-2 border-[#1e4a8a] bg-[#0d2545] p-[8px] shrink-0 overflow-hidden flex items-center justify-center">
+        <img
+          src={ile.imagebig}
+          className="w-auto"
+          style={{ height: `${(ile.imageRatio ?? 1) * 100}%` }}
+        />
       </div>
 
     </div>
