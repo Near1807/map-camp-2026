@@ -12,6 +12,10 @@ const ISLANDS = [
   { id: 7, name: "Ile de la Fortune", src: "/casino.png", top: "41.47%", left: "39%", width: "9.5%", link: "/ile/labo" },
 ];
 
+// 👉 Mets à false quand t'as fini d'ajuster les polygones, pour les rendre invisibles
+const DEBUG_POLYGONS = true;
+const DEBUG_COLORS = ["#ff4444", "#44cc44", "#4488ff", "#ffcc00", "#ff44cc"];
+
 // Convertit une liste de points [x%, y%] en clip-path CSS.
 // 👉 C'EST ICI QUE TU AJUSTES LA FORME DE CHAQUE ZONE. Chaque point est en
 // pourcentage (0-100) de la largeur/hauteur du conteneur du groupe. Ajoute
@@ -32,11 +36,24 @@ const ISLAND_GROUPS = [
     zones: [
       {
         id: 2, name: "Akala — Combattant", src: "/olympique_Isolée.png", link: "/ile/akala-olympique",
-        points: [[0, 0], [50, 0], [50, 100], [0, 100]] as [number, number][],
+        points: [
+  [15, 20],
+  [60, 20],
+  [80, 30],
+  [50, 40],
+  [55, 50],
+  [40, 60],
+  [20, 65],
+  [20,85 ],
+  [55,85],
+  [90, 65],
+  [80, 20],
+  
+] as [number, number][],
       },
       {
         id: 3, name: "Akala — Gourmand", src: "/Concu_Isolée.png", link: "/ile/akala-gourmandise",
-        points: [[50, 0], [100, 0], [100, 100], [50, 100]] as [number, number][],
+        points: [[15, 20], [60, 20],[80, 30], [50, 40],[55, 50],[40, 60],  [20, 65]] as [number, number][],
       },
     ],
   },
@@ -48,11 +65,11 @@ const ISLAND_GROUPS = [
     zones: [
       {
         id: 4, name: "Ula-Ula — Montagne", src: "/normale_Isolée.png", link: "/ile/ula-ula-montagne",
-        points: [[0, 0], [50, 0], [50, 100], [0, 100]] as [number, number][],
+        points: [[30, 17], [43, 20], [38, 57] ,[65, 68],[63, 82],[35, 83], [18,60]] as [number, number][],
       },
       {
         id: 5, name: "Ula-Ula — Hike", src: "/marche_Isolée.png", link: "/ile/ula-ula-hike",
-        points: [[50, 0], [100, 0], [100, 100], [50, 100]] as [number, number][],
+        points: [[43, 20], [75, 30], [80, 50],[65, 68], [38, 57]] as [number, number][],
       },
     ],
   },
@@ -143,6 +160,22 @@ export default function Home() {
                   style={{
                     clipPath: toPolygon(zone.points),
                     WebkitClipPath: toPolygon(zone.points),
+                  }}
+                />
+              ))}
+
+              {/* 🐞 Calque de debug — montre visuellement la forme exacte de chaque polygone */}
+              {DEBUG_POLYGONS && group.zones.map((zone, i) => (
+                <div
+                  key={`debug-${zone.id}`}
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    clipPath: toPolygon(zone.points),
+                    WebkitClipPath: toPolygon(zone.points),
+                    backgroundColor: DEBUG_COLORS[i % DEBUG_COLORS.length],
+                    opacity: 0.35,
+                    outline: `2px dashed ${DEBUG_COLORS[i % DEBUG_COLORS.length]}`,
+                    zIndex: 40,
                   }}
                 />
               ))}
