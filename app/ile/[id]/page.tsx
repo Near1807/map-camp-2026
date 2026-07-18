@@ -61,6 +61,7 @@ export default function IlePage() {
   const { id } = useParams();
   const ile = ILES.find(i => i.id === id);
   const { inCall, setInCall, stopRing, callId } = useCall();
+  const [answered, setAnswered] = useState(false);
 
   // 👉 callId === 2 -> bouton vert -> pickupSon2 (avec repli sur pickupSon si pas encore renseigné)
   const pickupSrc =
@@ -68,8 +69,31 @@ export default function IlePage() {
       ? (ile?.pickupSon2 && ile.pickupSon2 !== "pass" ? ile.pickupSon2 : ile?.pickupSon)
       : ile?.pickupSon;
 
-  const pickup = useSound(pickupSrc ?? "/pickup-default.mp3");
-  const [answered, setAnswered] = useState(false);
+  // Délai en attente pour le raccrochage automatique — permet de l'annuler si
+  // l'utilisateur raccroche manuellement avant que le délai ne se déclenche.
+  const autoHangupTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const pickup = useSound(pickupSrc ?? "/pickup-default.mp3", () => {
+    // 👉 Se déclenche quand pickupSon arrive à sa fin naturelle (pas si on stop() avant)
+    autoHangupTimeoutRef.current = setTimeout(() => {
+      setInCall(false);
+      stopRing();
+      pickup.stop();
+      setAnswered(false);
+    }, 2000);
+  });
+
+  const hangUp = () => {
+    if (autoHangupTimeoutRef.current) {
+      clearTimeout(autoHangupTimeoutRef.current);
+      autoHangupTimeoutRef.current = null;
+    }
+    setInCall(false);
+    stopRing();
+    pickup.stop();
+    setAnswered(false);
+  };
+
   const warningSound = useSound("/sons/warning.mp3"); // 👈 add this
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
@@ -90,6 +114,13 @@ export default function IlePage() {
     }
     return () => warningSound.stop();
   }, [showWarning, id]);
+
+  // Nettoyage du délai en attente si le composant se démonte (ex: navigation)
+  useEffect(() => {
+    return () => {
+      if (autoHangupTimeoutRef.current) clearTimeout(autoHangupTimeoutRef.current);
+    };
+  }, []);
 
   if (!ile) return (
     <div className="w-full h-full bg-[#07111f] flex items-center justify-center">
@@ -160,7 +191,7 @@ export default function IlePage() {
               )}
             <div className="flex flex-col items-center gap-1">
               <button
-                onClick={() => { setInCall(false); stopRing(); pickup.stop(); setAnswered(false); }}
+                onClick={hangUp}
                 className="w-12 h-12 rounded-full bg-red-700 hover:bg-red-500 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-red-500"
               >📵</button>
               <span className={`text-[8px] text-red-400 ${STYLE.font} uppercase tracking-wider`}>Raccrocher</span>
