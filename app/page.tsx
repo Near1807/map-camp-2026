@@ -14,7 +14,7 @@ const ISLANDS = [
 
   // === ULA-ULA scindée en 2 — 🚧 positions placeholder, à ajuster une fois tes images prêtes ===
   { id: 4, name: "Ula-Ula — Montagne",   src: "/normale_Isolée.png",  top: "31.5%", left: "55%",  width: "55.3%",link:"/ile/ula-ula-montagne" },
-  { id: 5, name: "Ula-Ula — Hike",       src: "/marche_Isolée.png",      top: "31.8%", left: "54.8%", width: "55.3%",link:"/ile/ula-ula-hike" },
+  { id: 5, name: "Ula-Ula — Hike",       src: "/Marche_Isolée.png",      top: "31.8%", left: "54.8%", width: "55.3%",link:"/ile/ula-ula-hike" },
 
   { id: 6, name: "Poni",               src: "/crado.png", top: "36.4%", left: "0.4%", width: "30.2%",link:"/ile/poni" },
   { id: 7, name: "Ile de la Fortune",      src: "/casino.png", top: "41.47%", left: "39%", width: "9.5%",link:"/ile/labo" },
