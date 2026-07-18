@@ -5,19 +5,57 @@ import { useCall } from "./context/Callcontext";
 import { GROUP_LEVEL } from "./config";
 import { useSound } from "./hooks/useSound";
 
+// Îles simples — un seul bouton, un seul id
 const ISLANDS = [
-  { id: 1, name: "Mélé-Mélé",            src: "/ile1.png", top: "16.8%",  left: "20.7%", width: "27%",link:"/ile/mele-mele" },
+  { id: 1, name: "Mélé-Mélé",       src: "/ile1.png", top: "16.8%",  left: "20.7%", width: "27%",   link: "/ile/mele-mele" },
+  { id: 6, name: "Poni",            src: "/crado.png", top: "36.4%", left: "0.4%",  width: "30.2%", link: "/ile/poni" },
+  { id: 7, name: "Ile de la Fortune", src: "/casino.png", top: "41.47%", left: "39%", width: "9.5%", link: "/ile/labo" },
+];
 
-  // === AKALA scindée en 2 — 🚧 positions placeholder, à ajuster une fois tes images prêtes ===
-  { id: 2, name: "Akala — Combattant",   src: "/olympique_Isolée.png",   top: "11.7%",  left: "47.4%", width: "30.5%",link:"/ile/akala-olympique" },
-  { id: 3, name: "Akala — Gourmand",     src: "/Concu_Isolée.png", top: "11.7%",  left: "47.4%", width: "30.5%",link:"/ile/akala-gourmandise" },
+// Convertit une liste de points [x%, y%] en clip-path CSS.
+// 👉 C'EST ICI QUE TU AJUSTES LA FORME DE CHAQUE ZONE. Chaque point est en
+// pourcentage (0-100) de la largeur/hauteur du conteneur du groupe. Ajoute
+// autant de points que nécessaire pour épouser le contour que tu veux.
+const toPolygon = (points: [number, number][]) =>
+  `polygon(${points.map(([x, y]) => `${x}% ${y}%`).join(", ")})`;
 
-  // === ULA-ULA scindée en 2 — 🚧 positions placeholder, à ajuster une fois tes images prêtes ===
-  { id: 4, name: "Ula-Ula — Montagne",   src: "/normale_Isolée.png",  top: "31.5%", left: "55%",  width: "55.3%",link:"/ile/ula-ula-montagne" },
-  { id: 5, name: "Ula-Ula — Hike",       src: "/Marche_Isolée.png",      top: "31.8%", left: "54.8%", width: "55.3%",link:"/ile/ula-ula-hike" },
-
-  { id: 6, name: "Poni",               src: "/crado.png", top: "36.4%", left: "0.4%", width: "30.2%",link:"/ile/poni" },
-  { id: 7, name: "Ile de la Fortune",      src: "/casino.png", top: "41.47%", left: "39%", width: "9.5%",link:"/ile/labo" },
+// Îles scindées — plusieurs images empilées au même endroit (transparence),
+// avec une zone de survol/clic définie par un polygone (clip-path) par sous-île.
+// Les polygones ci-dessous sont des placeholders simples (moitié gauche /
+// moitié droite) — remplace les points par la forme réelle que tu veux.
+const ISLAND_GROUPS = [
+  {
+    groupId: "akala",
+    top: "11.7%",
+    left: "47.4%",
+    width: "30.5%",
+    zones: [
+      {
+        id: 2, name: "Akala — Combattant", src: "/olympique_Isolée.png", link: "/ile/akala-olympique",
+        points: [[0, 0], [50, 0], [50, 100], [0, 100]] as [number, number][],
+      },
+      {
+        id: 3, name: "Akala — Gourmand", src: "/Concu_Isolée.png", link: "/ile/akala-gourmandise",
+        points: [[50, 0], [100, 0], [100, 100], [50, 100]] as [number, number][],
+      },
+    ],
+  },
+  {
+    groupId: "ula-ula",
+    top: "31.5%",
+    left: "55%",
+    width: "55.3%",
+    zones: [
+      {
+        id: 4, name: "Ula-Ula — Montagne", src: "/normale_Isolée.png", link: "/ile/ula-ula-montagne",
+        points: [[0, 0], [50, 0], [50, 100], [0, 100]] as [number, number][],
+      },
+      {
+        id: 5, name: "Ula-Ula — Hike", src: "/marche_Isolée.png", link: "/ile/ula-ula-hike",
+        points: [[50, 0], [100, 0], [100, 100], [50, 100]] as [number, number][],
+      },
+    ],
+  },
 ];
 
 const CALL_SOUNDS: Record<number, string> = {
@@ -52,13 +90,13 @@ export default function Home() {
         <div className="relative h-full">
           <img src="/alola.png" className="block rounded-xl h-full w-auto" />
 
+          {/* Îles simples */}
           {ISLANDS.map((ile) => (
             <div key={ile.id} className="absolute" style={{ top: ile.top, left: ile.left, width: ile.width }}>
               <Link
                 href={ile.link}
                 onMouseEnter={() => setHovered(ile.id)}
                 onMouseLeave={() => setHovered(null)}
-                onClick={() => console.log(ile.name)}
                 className="block cursor-pointer bg-transparent border-none p-0 transition-all duration-200"
                 style={{
                   filter: hovered === ile.id ? "brightness(0.5)" : "brightness(1)",
@@ -73,6 +111,52 @@ export default function Home() {
               >
                 <span className="text-lg text-[#7dc8ff] font-mono font-bold tracking-wide">{ile.name}</span>
               </div>
+            </div>
+          ))}
+
+          {/* Îles scindées en sous-biomes */}
+          {ISLAND_GROUPS.map((group) => (
+            <div key={group.groupId} className="absolute" style={{ top: group.top, left: group.left, width: group.width }}>
+
+              {/* Image de référence invisible — définit la hauteur du conteneur */}
+              <img src={group.zones[0].src} className="w-full h-auto invisible" draggable={false} aria-hidden="true" />
+
+              {/* Images empilées — chacune s'assombrit seulement si SA zone est survolée */}
+              {group.zones.map((zone) => (
+                <img
+                  key={zone.id}
+                  src={zone.src}
+                  className="absolute inset-0 w-full h-full pointer-events-none transition-all duration-200"
+                  style={{ filter: hovered === zone.id ? "brightness(0.5)" : "brightness(1)" }}
+                  draggable={false}
+                />
+              ))}
+
+              {/* Zones de survol/clic — forme définie par un polygone (clip-path), éditable dans zone.points */}
+              {group.zones.map((zone) => (
+                <Link
+                  key={zone.id}
+                  href={zone.link}
+                  onMouseEnter={() => setHovered(zone.id)}
+                  onMouseLeave={() => setHovered(null)}
+                  className="absolute inset-0"
+                  style={{
+                    clipPath: toPolygon(zone.points),
+                    WebkitClipPath: toPolygon(zone.points),
+                  }}
+                />
+              ))}
+
+              {/* Tooltips */}
+              {group.zones.map((zone) => (
+                <div
+                  key={zone.id}
+                  className="absolute left-1/2 -translate-x-1/2 -top-4 -translate-y-full whitespace-nowrap rounded-xl border-2 border-[#4a9eff] bg-[#0d2545] px-4 py-2 pointer-events-none transition-opacity duration-200 shadow-lg shadow-black/50 z-30"
+                  style={{ opacity: hovered === zone.id ? 1 : 0 }}
+                >
+                  <span className="text-lg text-[#7dc8ff] font-mono font-bold tracking-wide">{zone.name}</span>
+                </div>
+              ))}
             </div>
           ))}
 
