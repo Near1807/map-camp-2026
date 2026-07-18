@@ -7,10 +7,17 @@ import { useSound } from "./hooks/useSound";
 
 const ISLANDS = [
   { id: 1, name: "Mélé-Mélé",            src: "/ile1.png", top: "16.8%",  left: "20.7%", width: "27%",link:"/ile/mele-mele" },
-  { id: 2, name: "Akala",              src: "/ile2.png", top: "18.1%",  left: "50.1%", width: "26.6%",link:"/ile/akala" },
-  { id: 3, name: "Ula-Ula",            src: "/ile3.png", top: "41.5%", left: "63.8%",  width: "36.5%",link:"/ile/ula-ula" },
-  { id: 4, name: "Poni",               src: "/ile4.png", top: "36.4%", left: "0.4%", width: "30.2%",link:"/ile/poni" },
-  { id: 5, name: "Ile de la Fortune",      src: "/ile5.png", top: "41.47%", left: "39%", width: "9.5%",link:"/ile/labo" },
+
+  // === AKALA scindée en 2 — 🚧 positions placeholder, à ajuster une fois tes images prêtes ===
+  { id: 2, name: "Akala — Combattant",   src: "/olympique_Isolée.png",   top: "11.7%",  left: "47.4%", width: "30.5%",link:"/ile/akala-olympique" },
+  { id: 3, name: "Akala — Gourmand",     src: "/Concu_Isolée.png", top: "11.7%",  left: "47.4%", width: "30.5%",link:"/ile/akala-gourmandise" },
+
+  // === ULA-ULA scindée en 2 — 🚧 positions placeholder, à ajuster une fois tes images prêtes ===
+  { id: 4, name: "Ula-Ula — Montagne",   src: "/normale_Isolée.png",  top: "31.5%", left: "55%",  width: "55.3%",link:"/ile/ula-ula-montagne" },
+  { id: 5, name: "Ula-Ula — Hike",       src: "/marche_Isolée.png",      top: "31.8%", left: "54.8%", width: "55.3%",link:"/ile/ula-ula-hike" },
+
+  { id: 6, name: "Poni",               src: "/crado.png", top: "36.4%", left: "0.4%", width: "30.2%",link:"/ile/poni" },
+  { id: 7, name: "Ile de la Fortune",      src: "/casino.png", top: "41.47%", left: "39%", width: "9.5%",link:"/ile/labo" },
 ];
 
 const CALL_SOUNDS: Record<number, string> = {
