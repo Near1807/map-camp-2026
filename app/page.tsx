@@ -13,7 +13,7 @@ const ISLANDS = [
 ];
 
 // 👉 Mets à false quand t'as fini d'ajuster les polygones, pour les rendre invisibles
-const DEBUG_POLYGONS = true;
+const DEBUG_POLYGONS = false;
 const DEBUG_COLORS = ["#ff4444", "#44cc44", "#4488ff", "#ffcc00", "#ff44cc"];
 
 // Convertit une liste de points [x%, y%] en clip-path CSS.
