@@ -14,8 +14,8 @@ const ISLANDS = [
 ];
 
 const CALL_SOUNDS: Record<number, string> = {
-  1: "/Appels Chen/Happening fin.wav",
-  2: "/Appels Chen/SON_2_A_REMPLACER.wav",
+  1: "/Appels Chen/Veillée part 1.wav",
+  2: "/Appels Chen/Veillée suite.wav",
 };
 
 

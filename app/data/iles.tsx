@@ -20,7 +20,7 @@ export type Ile = {
   type4 : string;
   type5 : string;
   type6 : string;
-  levelMin: number;
+  levelMin: number; 
   pickupSon: string;
   pickupSon2: string;
 };
@@ -79,7 +79,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt gastronomique majeur.`,
     type6 : "/pokemon_types/fire.png",
     levelMin: 2,
     pickupSon: "/Appels Chen/Jour 1.wav",
-    pickupSon2: "pass",
+    pickupSon2: "/Appels Chen/Jour 2.wav",
   },
   {
     id: "ula-ula",
@@ -107,7 +107,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt naturel majeur.`,
     type6 : "/pokemon_types/bug.png",
     levelMin: 53,
     pickupSon: "/Appels Chen/Jour 3.wav",
-    pickupSon2: "pass",
+    pickupSon2: "/Appels Chen/Jour 4.wav",
   },
   {
     id: "poni",
