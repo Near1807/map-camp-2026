@@ -55,7 +55,7 @@
           points:[[43, 20], [75, 30], [80, 50],[65, 68], [38, 57]]as [number, number][],
         },
         {
-          id: 5, name: "Ula-Ula — Hike", src: "/marche_Isolée.png", link: "/ile/ula-ula-hike",
+          id: 5, name: "Ula-Ula — Hike", src: "/Marche_Isolée.png", link: "/ile/ula-ula-hike",
           points:  [[30, 17], [43, 20], [38, 57] ,[65, 68],[63, 82],[35, 83], [18,60]] as [number, number][],
         },
       ],
