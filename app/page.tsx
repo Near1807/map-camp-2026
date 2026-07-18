@@ -15,6 +15,7 @@ const ISLANDS = [
 
 export default function Home() {
   const { inCall, setInCall, playRing, stopRing } = useCall();
+  const [answered, setAnswered] = useState(false);
   const pickup = useSound("/Appels Chen/Happening fin.wav");
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
@@ -118,15 +119,17 @@ export default function Home() {
 
           {/* Boutons */}
           <div className="flex gap-6 z-10">
-            <div className="flex flex-col items-center gap-1">
-              <button
-                onClick={() =>{ pickup.play();setInCall(true);stopRing()}}
-                className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-400 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-emerald-400"
-              >
-                📞
-              </button>
-              <span className="text-[8px] text-emerald-400 font-mono uppercase tracking-wider">Décrocher</span>
-            </div>
+            {!answered && (
+                <div className="flex flex-col items-center gap-1">
+                  <button
+                    onClick={() => { pickup.play(); setAnswered(true); stopRing(); }}
+                    className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-400 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-emerald-400"
+                  >
+                    📞
+                  </button>
+                  <span className="text-[8px] text-emerald-400 font-mono uppercase tracking-wider">Décrocher</span>
+                </div>
+              )}
             <div className="flex flex-col items-center gap-1">
               <button
                 onClick={() =>{ setInCall(false);stopRing()}}
