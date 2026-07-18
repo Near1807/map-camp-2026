@@ -66,14 +66,14 @@ export function PokedexHeader() {
       </div>
 
       {/* Badges obtenus — affiche l'icône du type si obtention === true, sinon unknown.png */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop:'20px'}}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '18px', marginTop:'20px'}}>
         {badges.map((badge) => (
           <img
             key={badge.name}
             src={BADGE_PATH + (badge.obtention ? badge.icon : UNKNOWN_BADGE_ICON)}
             alt={badge.obtention ? badge.name : "badge non obtenu"}
             title={badge.obtention ? badge.name : "???"}
-            style={{ width: 50, height: 50, flexShrink: 0 }}
+            style={{ width: 40, height: 40, flexShrink: 0 }}
           />
         ))}
       </div>
