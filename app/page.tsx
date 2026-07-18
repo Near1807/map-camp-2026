@@ -10,7 +10,7 @@ const ISLANDS = [
   { id: 2, name: "Akala",              src: "/ile2.png", top: "18.1%",  left: "50.1%", width: "26.6%",link:"/ile/akala" },
   { id: 3, name: "Ula-Ula",            src: "/ile3.png", top: "41.5%", left: "63.8%",  width: "36.5%",link:"/ile/ula-ula" },
   { id: 4, name: "Poni",               src: "/ile4.png", top: "36.4%", left: "0.4%", width: "30.2%",link:"/ile/poni" },
-  { id: 5, name: "Labo flottant",      src: "/ile5.png", top: "41.47%", left: "39%", width: "9.5%",link:"/ile/labo" },
+  { id: 5, name: "Ile de la Fortune",      src: "/ile5.png", top: "41.47%", left: "39%", width: "9.5%",link:"/ile/labo" },
 ];
 
 const CALL_SOUNDS: Record<number, string> = {
