@@ -7,8 +7,8 @@ import { useSound } from "./hooks/useSound";
 
 // Îles simples — un seul bouton, un seul id
 const ISLANDS = [
-  { id: 1, name: "Mélé-Mélé",       src: "/ile1.png", top: "16.8%",  left: "20.7%", width: "27%",   link: "/ile/mele-mele" },
-  { id: 6, name: "Poni",            src: "/crado.png", top: "36.4%", left: "0.4%",  width: "30.2%", link: "/ile/poni" },
+  { id: 1, name: "Ile de la Moria",       src: "/ile1.png", top: "16.8%",  left: "20.7%", width: "27%",   link: "/ile/mele-mele" },
+  { id: 6, name: "Marécages Empoisonés ???",            src: "/crado.png", top: "36.4%", left: "0.4%",  width: "30.2%", link: "/ile/poni" },
   { id: 7, name: "Ile de la Fortune", src: "/casino.png", top: "41.47%", left: "39%", width: "9.5%", link: "/ile/labo" },
 ];
 
@@ -36,11 +36,11 @@ const ISLAND_GROUPS = [
     zIndex: 20,
     zones: [
       {
-        id: 2, name: "Akala — Combattant", src: "/olympique_Isolée.png", link: "/ile/akala-olympique",
+        id: 2, name: "Ile des Combattant", src: "/olympique_Isolée.png", link: "/ile/akala-olympique",
         points: [[60, 20],[80, 20],[80, 30],[95, 55],[75,70],[55,70],[47,85],[30,85],[17,73],[20, 65],[40, 60],[55, 50], [50, 40],[70, 40]] as [number, number][],
       },
       {
-        id: 3, name: "Akala — Gourmand", src: "/Concu_Isolée.png", link: "/ile/akala-gourmandise",
+        id: 3, name: "Ile de la Gourmandise", src: "/Concu_Isolée.png", link: "/ile/akala-gourmandise",
         points: [[15, 20], [60, 20],[70, 40], [50, 40],[55, 50],[40, 60],[20, 65]] as [number, number][],
       },
     ],
@@ -53,11 +53,11 @@ const ISLAND_GROUPS = [
     zIndex: 10,
     zones: [
       {
-        id: 4, name: "Ula-Ula — Montagne", src: "/normale_Isolée.png", link: "/ile/ula-ula-montagne",
+        id: 4, name: "Mont Argenté", src: "/normale_Isolée.png", link: "/ile/ula-ula-montagne",
         points:[[43, 20], [75, 30], [80, 50],[65, 68], [38, 57]]as [number, number][],
       },
       {
-        id: 5, name: "Ula-Ula — Hike", src: "/Marche_Isolée.png", link: "/ile/ula-ula-hike",
+        id: 5, name: "Terres Sauvages", src: "/Marche_Isolée.png", link: "/ile/ula-ula-hike",
         points:  [[30, 17], [43, 20], [38, 57] ,[65, 68],[63, 82],[35, 83], [18,60]] as [number, number][],
       },
     ],
