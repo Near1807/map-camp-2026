@@ -132,7 +132,7 @@ export default function Home() {
               )}
             <div className="flex flex-col items-center gap-1">
               <button
-                onClick={() =>{ setInCall(false);stopRing()}}
+                onClick={() =>{ setInCall(false);stopRing();pickup.stop();}}
                 className="w-12 h-12 rounded-full bg-red-700 hover:bg-red-500 transition-all duration-200 hover:scale-110 flex items-center justify-center text-xl border-2 border-red-500"
               >
                 📵
