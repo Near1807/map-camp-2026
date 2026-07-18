@@ -28,7 +28,7 @@ export type Ile = {
 export const ILES: Ile[] = [
   {
     id: "mele-mele",
-    nom: "Mélé-Mélé",
+    nom: "Ile de la Moria",
     numero: "Île n°1 — Alola",
     image: "/ile1.png",
     imagebig: "/ile1.png",
@@ -57,7 +57,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt occulte majeur.`,
   // === AKALA — scindée en 2 sous-îles (une par biome) ===
   {
     id: "akala-olympique",
-    nom: "Akala — Domaine du Combattant",
+    nom: "Domaine du Combattant",
     numero: "Île n°2a — Alola",
     // 🚧 PLACEHOLDER — à remplacer par tes vraies images
     image: "/olympique_hachurée.png",
@@ -85,7 +85,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt sportif majeur.`,
   },
   {
     id: "akala-gourmandise",
-    nom: "Akala — Paradis Gourmand",
+    nom: "Paradis Gourmand",
     numero: "Île n°2b — Alola",
     // 🚧 PLACEHOLDER — à remplacer par tes vraies images
     image: "/TODO-akala-gourmandise.png",
@@ -115,7 +115,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt gastronomique majeur.`,
   // === ULA-ULA — scindée en 2 sous-îles (une par biome) ===
   {
     id: "ula-ula-montagne",
-    nom: "Ula-Ula — Mont Argenté",
+    nom: "Mont Argenté",
     numero: "Île n°3a — Alola",
     // 🚧 PLACEHOLDER — à remplacer par tes vraies images
     image: "/TODO-ula-ula-montagne.png",
@@ -143,7 +143,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt montagnard majeur.`,
   },
   {
     id: "ula-ula-hike",
-    nom: "Ula-Ula — Terres Sauvages",
+    nom: "Terres Sauvages",
     numero: "Île n°3b — Alola",
     // 🚧 PLACEHOLDER — à remplacer par tes vraies images
     image: "/TODO-ula-ula-hike.png",
@@ -172,7 +172,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt naturel majeur.`,
 
   {
     id: "poni",
-    nom: "Poni",
+    nom: "Marrécages Empoisonnés",
     numero: "Île n°4 — Alola",
     image: "/crado.png",
     imagebig: "/crado.png",
