@@ -148,7 +148,7 @@ Fin de l'entrée. Domaine classé zone d'intérêt hostile majeur.`,
     difficulteColor: "text-red-400",
     niveau: 98,
     pokemons: ["Raichu d'Alola", "Chelours", "Guérilande", "Type:0"],
-    description1: `Bienvenue sur l'île de la Tenta Fête, haut lieu festif d'Alola connu pour ses soirées animées et ses jeux. Pokémon et Dresseurs s'y mêlent chaque soir pour une grande célébration collective.
+    description1: `Bienvenue sur l'île de la Fortune, haut lieu festif d'Alola connu pour ses soirées animées et ses jeux. Pokémon et Dresseurs s'y mêlent chaque soir pour une grande célébration collective.
 Fin de l'entrée. Domaine classé zone d'intérêt festif majeur.`,
     description2: "pass",
     biome1 : "pass",
