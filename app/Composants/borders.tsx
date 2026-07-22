@@ -1,8 +1,10 @@
 "use client"
 
 import { GROUP_LEVEL } from "../config";
+import { useRouter } from "next/navigation"; // 👈 ajoute cet import
 import { useCall } from "../context/Callcontext";
 import { badges } from "../data/badges";
+import router from "next/router";
 
 // 👉 Dossier où sont rangées les images de badges. Change si besoin.
 const BADGE_PATH = "/pokemon_types/";
@@ -53,14 +55,14 @@ export function PokedexHeader() {
           {GROUP_LEVEL}
         </div>
         {[
-          { color: '#ff4444', onClick: undefined },
+          { color: '#ff4444', onClick: () => router.push("/BadgesCases") },
           { color: '#ffcc00', onClick: () => triggerCall(1) },
           { color: '#44cc44', onClick: () => triggerCall(2) },
         ].map(({ color, onClick }, i) => (
           <div key={i} onClick={onClick} style={{
             width: 12, height: 12, borderRadius: '50%',
             backgroundColor: color,
-            cursor: onClick ? 'pointer' : 'default',
+            cursor: 'pointer',
           }} />
         ))}
       </div>
