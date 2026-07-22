@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { badges } from "../data/badges";
-import { useRouter } from "next/navigation";
+
 
 // 👉 Même convention que dans le header : chemin des icônes de type + fallback "non obtenu"
 const BADGE_PATH = "/pokemon_types/";
