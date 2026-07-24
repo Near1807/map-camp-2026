@@ -7,10 +7,10 @@ export type Badge = {
 export const badges: Badge[] = [
   { name: "bug", icon: "bug.png", obtention: false },
   { name: "dark", icon: "dark.png", obtention: false },
-  { name: "dragon", icon: "dragon.png", obtention: false },
-  { name: "electric", icon: "electric.png", obtention: false },
+  { name: "dragon", icon: "dragon.png", obtention: true },
+  { name: "electric", icon: "electric.png", obtention: true },
   { name: "fairy", icon: "fairy.png", obtention: false },
-  { name: "fighting", icon: "fighting.png", obtention: false },
+  { name: "fighting", icon: "fighting.png", obtention: true },
   { name: "fire", icon: "fire.png", obtention: false },
   { name: "flying", icon: "flying.png", obtention: false },
   { name: "ghost", icon: "ghost.png", obtention: false },
