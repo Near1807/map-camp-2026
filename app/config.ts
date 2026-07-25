@@ -1,1 +1,1 @@
-export const GROUP_LEVEL = 2;
+export const GROUP_LEVEL = 12;
