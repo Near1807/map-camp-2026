@@ -162,7 +162,7 @@ export const ILES: Ile[] = [
     type4 : "pass",
     type5 : "pass",
     type6 : "pass",
-    levelMin: 27,
+    levelMin: 25,
     pickupSon: "/Appels Chen/Jour 4.wav",
     pickupSon2: "pass",
   },
