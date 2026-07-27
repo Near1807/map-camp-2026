@@ -150,7 +150,7 @@ export const ILES: Ile[] = [
     meteo: "🌧️ Pluie",
     difficulte: "★★☆☆☆",
     difficulteColor: "text-orange-400",
-    niveau: 27,
+    niveau: 25,
     pokemons: ["Brindibou", "Mimantis", "Larvibule"],
     description1: `Bienvenue sur l'île d'Ula-Ula, secteur des Terres Sauvages, où prairies et forêts abritent une biodiversité dominée par les Pokémon Plante, Vol et Insecte. De nombreuses familles y élèvent leurs petits, leur territoire soigneusement délimité.Domaine classé zone d'intérêt naturel majeur.`,
     description2: "pass",
