@@ -5,16 +5,16 @@ export type Badge = {
 };
 
 export const badges: Badge[] = [
-  { name: "insecte", icon: "bug.png", obtention: false },
+  { name: "insecte", icon: "bug.png", obtention: true },
   { name: "tenebre", icon: "dark.png", obtention: false },
   { name: "dragon", icon: "dragon.png", obtention: true },
   { name: "electric", icon: "electric.png", obtention: true },
   { name: "fée", icon: "fairy.png", obtention: true },
   { name: "combat", icon: "fighting.png", obtention: true },
   { name: "feu", icon: "fire.png", obtention: true },
-  { name: "vol", icon: "flying.png", obtention: false },
+  { name: "vol", icon: "flying.png", obtention: true },
   { name: "spectre", icon: "ghost.png", obtention: false },
-  { name: "plante", icon: "grass.png", obtention: false },
+  { name: "plante", icon: "grass.png", obtention: true },
   { name: "sol", icon: "ground.png", obtention: false },
   { name: "glace", icon: "ice.png", obtention: false },
   { name: "normal", icon: "normal.png", obtention: true },
